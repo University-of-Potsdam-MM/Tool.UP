@@ -8,6 +8,7 @@ import { FeatureSearchComponent } from './components/feature-search/feature-sear
 import { AppFeaturesComponent } from './components/app-features/app-features.component';
 import { AppsComponent } from './components/apps/apps.component';
 import { RootComponent } from "./components/root/root.component";
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { RootComponent } from "./components/root/root.component";
     FeatureSearchComponent,
     AppFeaturesComponent,
     AppsComponent,
-    RootComponent
+    RootComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
