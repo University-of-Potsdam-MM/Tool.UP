@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RootComponent } from './components/root/root.component'; 
+import { HomeComponent } from './components/home/home.component';
 import { CategoriesComponent } from './components/categories/categories.component';
-import { AppFeaturesComponent } from './components/app-features/app-features.component';
+import { FeaturesComponent } from './components/features/features.component';
+import { FeatureSearchComponent } from './components/feature-search/feature-search.component';
 
-const routes: Routes = 
+const routes: Routes =
 [
-  //{path: 'root', component: RootComponent}, 
-  //{path: 'categories', component: CategoriesComponent},
-  //{path: 'features', component: AppFeaturesComponent},
+  {path: 'home', component: HomeComponent},
+  {path: 'categories', component: CategoriesComponent},
+  {path: 'categories/:id', component: CategoriesComponent},
+  {path: 'features', component: FeaturesComponent},
+  {path: 'feature-search', component: FeatureSearchComponent},
 ]
 
 @NgModule({

@@ -4,10 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './root.component.html',
-  styleUrls: ['./root.component.scss']
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class RootComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
 
   cats:any = [];

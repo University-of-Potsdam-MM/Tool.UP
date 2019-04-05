@@ -5,10 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { FeatureSearchComponent } from './components/feature-search/feature-search.component';
-import { AppFeaturesComponent } from './components/app-features/app-features.component';
+import { FeaturesComponent } from './components/features/features.component';
 import { AppsComponent } from './components/apps/apps.component';
-import { RootComponent } from "./components/root/root.component";
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from "./components/home/home.component";
+import { HeaderComponent } from './components/header/header.component';
 import { DataService } from "./services/data.service";
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
@@ -17,10 +17,10 @@ import { FormsModule } from '@angular/forms';
 const appRoutes: Routes = [
   {
     path: 'root',
-    component: RootComponent,
+    component: HomeComponent,
     data: { title: 'Alle Kategorien' }
   }
-]; 
+];
 
 
 @NgModule({
@@ -28,15 +28,15 @@ const appRoutes: Routes = [
     AppComponent,
     CategoriesComponent,
     FeatureSearchComponent,
-    AppFeaturesComponent,
+    FeaturesComponent,
     AppsComponent,
-    RootComponent,
-    NavbarComponent, 
+    HomeComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule, 
-    AppRoutingModule, 
+    HttpClientModule,
+    AppRoutingModule,
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
