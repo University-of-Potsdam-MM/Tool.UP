@@ -8,7 +8,20 @@ import { FeatureSearchComponent } from './components/feature-search/feature-sear
 import { FeaturesComponent } from './components/features/features.component';
 import { AppsComponent } from './components/apps/apps.component';
 import { HomeComponent } from "./components/home/home.component";
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './components/header/header.component';
+import { DataService } from "./services/data.service";
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
+const appRoutes: Routes = [
+  {
+    path: 'root',
+    component: HomeComponent,
+    data: { title: 'Alle Kategorien' }
+  }
+];
+
 
 @NgModule({
   declarations: [
@@ -22,9 +35,12 @@ import { HeaderComponent } from './header/header.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
