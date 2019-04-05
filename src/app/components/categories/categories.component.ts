@@ -11,25 +11,49 @@ export class CategoriesComponent implements OnInit {
 
   public id;
   cats:any = [];
+  categorie:any = []; 
   constructor(public rest:DataService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get("id");
-   // console.log(this.id);
-    console.log(this.getAllCats());  
-    this.getAllCats(); 
-
-    // if you get id != null then request http get with id and updat view
-    //else
-    // get all categories 
+    if (this.id != null)
+    {
+      this.getCatbyID(this.id); 
+      console.log(this.id); 
+      //Get Beschreibung der Kategorie
+      //Update view- -- aber wie????!
+    }
+    else
+    {
+      this.getAllCats(); 
+    }
   }
 
-  getAllCats() {
+  getAllCats()
+  {
     this.cats = [];
     this.rest.getAllCats().subscribe((data: {}) => {
-      console.log(data);
+      //console.log(data);
       this.cats = data;
     });
   }
+
+  onClickMe(id) {
+    console.log('Clicked!');
+    console.log(id)
+
+  }
+
+ getCatbyID(id)
+ {
+  this.categorie = []; 
+  this.rest.getCatbyID(id).subscribe((data: {}) =>
+  {
+    this.categorie = data;
+  }); 
+ 
+ } 
+
+
 
 }

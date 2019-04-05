@@ -33,6 +33,13 @@ export class DataService {
       map(this.extractData));
   }
 
+  getCatbyID(catID): Observable<any>
+  {
+    return this.http.get(endpoint + 'category/' + catID).pipe(
+      map(this.extractData));
+  }
+
+
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
