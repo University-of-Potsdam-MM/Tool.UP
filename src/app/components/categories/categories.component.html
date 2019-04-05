@@ -1,4 +1,6 @@
 <div class="container-fluid">
   <h1>Categories</h1>
-  <a class="nav-link register-custom" routerLink="/categories/1">1 <span class="sr-only">(current)</span></a>
+  <a *ngFor = "let cat of cats "class="nav-link register-custom" routerLink="/categories/" >{{cat.title}} <span class="sr-only">(current)</span></a>
 </div>
+
+

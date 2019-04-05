@@ -10,9 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
 
-  cats:any = [];
-
-  constructor(public rest:DataService, private route: ActivatedRoute, private router: Router) { }
+  constructor() { }
 
 
 
