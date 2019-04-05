@@ -6,9 +6,9 @@ import { AppFeaturesComponent } from './components/app-features/app-features.com
 
 const routes: Routes = 
 [
-  {path: 'root', component: RootComponent}, 
-  {path: 'categories', component: CategoriesComponent},
-  {path: 'features', component: AppFeaturesComponent},
+  //{path: 'root', component: RootComponent}, 
+  //{path: 'categories', component: CategoriesComponent},
+  //{path: 'features', component: AppFeaturesComponent},
 ]
 
 @NgModule({

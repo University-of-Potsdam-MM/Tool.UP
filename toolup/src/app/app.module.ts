@@ -9,6 +9,19 @@ import { AppFeaturesComponent } from './components/app-features/app-features.com
 import { AppsComponent } from './components/apps/apps.component';
 import { RootComponent } from "./components/root/root.component";
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { DataService } from "./services/data.service";
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
+const appRoutes: Routes = [
+  {
+    path: 'root',
+    component: RootComponent,
+    data: { title: 'Alle Kategorien' }
+  }
+]; 
+
 
 @NgModule({
   declarations: [
@@ -18,13 +31,16 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     AppFeaturesComponent,
     AppsComponent,
     RootComponent,
-    NavbarComponent
+    NavbarComponent, 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule, 
+    AppRoutingModule, 
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
