@@ -9,7 +9,8 @@ import { FormsModule } from '@angular/forms';
 
 const routes: Routes =
 [
-  {path: 'home', component: HomeComponent, data: {title: 'Alle Kategorien'}},
+  {path: 'home', component: HomeComponent},
+  {path: 'home/:id', component: HomeComponent},
   {path: 'categories', component: CategoriesComponent},
   {path: 'categories/:id', component: CategoriesComponent},
   {path: 'features', component: FeaturesComponent},

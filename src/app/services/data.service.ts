@@ -14,6 +14,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
+
 export class DataService {
 
   constructor(public http:HttpClient)
@@ -38,6 +39,21 @@ export class DataService {
     return this.http.get(endpoint + 'category/' + catID).pipe(
       map(this.extractData));
   }
+
+  getTopLevelCats(): Observable<any>
+  {
+    return this.http.get(endpoint + 'category/toplevel').pipe(
+      map(this.extractData));
+  }
+
+
+
+/*getTopLevelCats(): Observable<any>
+  {
+    return this.http.get(endpoint + 'category/toplevel').map(response => response.json())
+  }*/
+
+
 
 
 
