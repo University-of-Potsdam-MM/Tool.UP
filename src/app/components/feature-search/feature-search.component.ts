@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-feature-search',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeatureSearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(public rest:DataService, private route: ActivatedRoute, private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
+  
   }
+
+
+
+
+
 
 }

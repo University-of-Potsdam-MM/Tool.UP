@@ -14,6 +14,7 @@ const routes: Routes =
   {path: 'categories', component: CategoriesComponent},
   {path: 'categories/:id', component: CategoriesComponent},
   {path: 'features', component: FeaturesComponent},
+  {path: 'features/:id', component: FeaturesComponent},
   {path: 'feature-search', component: FeatureSearchComponent},
 ]
 

@@ -46,6 +46,17 @@ export class DataService {
       map(this.extractData));
   }
 
+  getAllFeatures()
+  {
+    return this.http.get(endpoint + 'feature').pipe(
+      map(this.extractData));
+  }
+
+  getFeature(featureId)
+  {
+    return this.http.get(endpoint + 'feature/' + featureId).pipe(
+      map(this.extractData));
+  }
 
 
 /*getTopLevelCats(): Observable<any>
