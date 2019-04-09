@@ -1,7 +1,10 @@
 <div class="container-fluid">
-  <h1>Categories</h1>
-  <a  *ngFor = "let cat of categories "class="nav-link register-custom" [routerLink]="['/categories', cat.id]"  >{{cat.title}} <span class="sr-only">(current)</span></a>
-  
+  <h1>Kategorien</h1>
+  <hr>
+   <!-- <a  *ngFor = "let cat of categories "class="nav-link register-custom" [routerLink]="['/categories', cat.id]"  >{{cat.title}} <span class="sr-only">(current)</span></a>-->
+   <div class="d-flex p-2 bd-highlight flex-row align-content-start flex-wrap">
+   <app-cards *ngFor = "let cat of categories" [title]="cat.title"> </app-cards>
+  </div>
   <!--category-->
   
   <div *ngIf="category != null">
@@ -13,6 +16,7 @@
       {{console.log(subCategory | json)}}
         {{console.log(subCategory)}}
         {{console.log(subCategory.description)}}-->
+
       <a class="nav-link register-custom" [routerLink]="['/categories', subCategory.id]"  >{{subCategory.title | json }} <span class="sr-only">(current)</span></a>
     </div>
 
