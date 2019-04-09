@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
+import { CardsComponent } from './components/cards/cards.component';
 
 
 
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
     AppsComponent,
     HomeComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    CardsComponent
   ],
   imports: [
     BrowserModule,
