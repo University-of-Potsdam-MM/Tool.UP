@@ -13,6 +13,7 @@ import { DataService } from "./services/data.service";
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -33,7 +34,8 @@ const appRoutes: Routes = [
     FeaturesComponent,
     AppsComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
