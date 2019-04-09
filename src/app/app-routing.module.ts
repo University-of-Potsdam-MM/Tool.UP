@@ -6,7 +6,7 @@ import { FeaturesComponent } from './components/features/features.component';
 import { FeatureSearchComponent } from './components/feature-search/feature-search.component';
 import { FormsModule } from '@angular/forms';
 
-
+import { LoginComponent } from "./components/login/login.component";
 const routes: Routes =
 [
   {path: 'home', component: HomeComponent},
@@ -16,6 +16,8 @@ const routes: Routes =
   {path: 'features', component: FeaturesComponent},
   {path: 'features/:id', component: FeaturesComponent},
   {path: 'feature-search', component: FeatureSearchComponent},
+  {path: 'login', component: LoginComponent},
+
 ]
 
 @NgModule({
