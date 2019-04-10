@@ -6,7 +6,7 @@
    <app-cards *ngFor = "let cat of categories" [title]="cat.title"> </app-cards>
   </div>
   <!--category-->
-  
+
   <div *ngIf="category != null">
       {{console.log(category)}}
     <h1>{{category.title}}</h1>
@@ -20,6 +20,10 @@
       <a class="nav-link register-custom" [routerLink]="['/categories', subCategory.id]"  >{{subCategory.title | json }} <span class="sr-only">(current)</span></a>
     </div>
 
+      {{subcat.description}}
+        {{console.log(subcat, subcat.description)}}
+      <a class="nav-link register-custom" [routerLink]="['/categories', subcat.id]"  >{{ subcat.title }} <span class="sr-only">(current)</span></a>
+    </div>
   </div>
 
 </div>

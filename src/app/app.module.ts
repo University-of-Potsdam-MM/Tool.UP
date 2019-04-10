@@ -10,7 +10,6 @@ import { HomeComponent } from "./components/home/home.component";
 import { HeaderComponent } from './components/header/header.component';
 import { DataService } from "./services/data.service";
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { CardsComponent } from './components/cards/cards.component';
@@ -45,7 +44,6 @@ const appRoutes: Routes = [
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
