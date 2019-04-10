@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoriesComponent } from './components/categories/categories.component';
@@ -13,6 +12,19 @@ import { DataService } from "./services/data.service";
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
+import { CardsComponent } from './components/cards/cards.component';
+import { FormComponent } from './components/form/form.component';
+
+
+
+const appRoutes: Routes = [
+  {
+    path: 'root',
+    component: HomeComponent,
+    data: { title: 'Alle Kategorien' }
+  }
+];
+
 
 @NgModule({
   declarations: [
@@ -23,7 +35,9 @@ import { LoginComponent } from './components/login/login.component';
     AppsComponent,
     HomeComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    CardsComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
