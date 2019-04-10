@@ -4,8 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { FeaturesComponent } from './components/features/features.component';
 import { FeatureSearchComponent } from './components/feature-search/feature-search.component';
-import { FormsModule } from '@angular/forms';
-
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes =
 [
@@ -15,6 +14,7 @@ const routes: Routes =
   {path: 'categories/:id', component: CategoriesComponent},
   {path: 'features', component: FeaturesComponent},
   {path: 'feature-search', component: FeatureSearchComponent},
+  {path: 'login', component: LoginComponent},
 ]
 
 @NgModule({
