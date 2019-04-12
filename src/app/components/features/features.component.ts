@@ -33,9 +33,8 @@ export class FeaturesComponent implements OnInit {
     {
       this.features = [];  
       this.rest.getAllFeatures().subscribe((data: {}) => {
-      this.features = data;
-      this.first = (this.features.splice(0,this.features.length/2)); 
-
+        this.features = data;
+        this.first = (this.features.splice(0,this.features.length/2)); 
       });
     }
   

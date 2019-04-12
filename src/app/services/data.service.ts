@@ -40,8 +40,9 @@ export class DataService {
       subCatArr.push(JSON.parse(subcat));
     });
     res.subCategories = subCatArr;
-
+    
     let body = res;
+    console.log(body); 
     return body || { };
   }
 
@@ -56,6 +57,7 @@ export class DataService {
     });
     res.applications = appsArr;
     let body = res;
+    console.log(body); 
     return body || { };
   }
 

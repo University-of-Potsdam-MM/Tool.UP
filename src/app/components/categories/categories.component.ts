@@ -17,16 +17,15 @@ export class CategoriesComponent implements OnInit {
   public id;
   category:Category;
   categories:Array<Category> = [];
-  apps:Array<Category> = []; 
+  apps:Array<Application> = []; 
   constructor(public rest:DataService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get("id");
 
     if (this.id != null) {
-      console.log(this.id)
       this.getCatbyID(this.id);
-     // this.getApps(this.id); 
+      this.getApps(this.id); 
      // this.getFeature(this.id);  
     }
     else {
@@ -38,10 +37,26 @@ export class CategoriesComponent implements OnInit {
   getAllCats() {
     this.categories = [];
     this.rest.getAllCats().subscribe((data: Array<Category>) => {
-      console.log(data);
+     // console.log(data);
       this.categories = data;
     });
   }
+
+
+  getApps(id)
+  {
+      this.apps = []; 
+      this.rest.getApps(id).subscribe((data:Array<Application>) => {
+      this.apps = data;
+      console.log(data.applications);
+      data.applications.forEach(test => {
+        console.log(test.title); 
+      }); 
+    });
+  
+  }
+  
+
 
   onClickMe(id) {
     console.log('Clicked!');
@@ -49,7 +64,11 @@ export class CategoriesComponent implements OnInit {
     this.rest.getCatbyID(id).subscribe((data: Category) => {
     this.category = data; 
   });
-  
+  this.rest.getApps(id).subscribe((data: Array<Application>) => {
+    this.apps = data; 
+  });
+
+
 }
 
  getCatbyID(id) {
@@ -87,14 +106,6 @@ export class CategoriesComponent implements OnInit {
 */
 
 
-getApps(id)
-{
-  this.rest.getApps(id).subscribe((data: Category) => {
-    this.category = data; 
-    console.log(data.applications); 
-  });
-
-}
 
 
 }
