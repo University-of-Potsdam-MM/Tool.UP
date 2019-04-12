@@ -3,27 +3,56 @@
   <hr>
    <!-- <a  *ngFor = "let cat of categories "class="nav-link register-custom" [routerLink]="['/categories', cat.id]"  >{{cat.title}} <span class="sr-only">(current)</span></a>-->
    <div class="d-flex p-2 bd-highlight flex-row align-content-start flex-wrap">
-   <app-cards *ngFor = "let cat of categories" [title]="cat.title"> </app-cards>
+   <app-cards *ngFor = "let cat of categories" [title]="cat.title" class="nav-link register-custom" [routerLink]="['/categories', cat.id]" > </app-cards>
   </div>
   <!--category-->
 
   <div *ngIf="category != null">
       {{console.log(category)}}
-    <h1>{{category.title}}</h1>
-    <span>{{category.description}}</span>
-    <div *ngFor="let subCategory of category.subCategories">
+      <h1> {{category.title}}</h1>
+      <br>
+    <span>{{category.applications}}</span>
+    <br>
+    <br>
+
+    <h2> Unterkategorien </h2>
+    <br>
+    <div class="d-flex p-2 bd-highlight flex-row align-content-start flex-wrap" >
+    <br>
+    <br>
       <!--
       {{console.log(subCategory | json)}}
         {{console.log(subCategory)}}
-        {{console.log(subCategory.description)}}-->
+        {{console.log(subCategory.description)}}
+            <a class="nav-link register-custom" [routerLink]="['/categories', subCategory.id]"  >{{subCategory.title | json }} <span class="sr-only">(current)</span></a>
+-->
 
-      <a class="nav-link register-custom" [routerLink]="['/categories', subCategory.id]"  >{{subCategory.title | json }} <span class="sr-only">(current)</span></a>
+
+        <!--- {{subCategory.description}} -->
+        <!---  {{console.log(subCategory, subCategory.description)}}-->
+      <!---   <a class="nav-link register-custom" [routerLink]="['/categories', subCategory.id]" > {{ subCategory.title }} <span class="sr-only">(current)</span></a>-->
+      <app-cards  *ngFor = "let subCategory of category.subCategories" [title]="subCategory.title" class="nav-link register-custom" [routerLink]="['/categories', subCategory.id]"  (click)="onClickMe(subCategory.id)"> </app-cards>
+     
+      <br>
+
+
+
     </div>
 
-      {{subcat.description}}
-        {{console.log(subcat, subcat.description)}}
-      <a class="nav-link register-custom" [routerLink]="['/categories', subcat.id]"  >{{ subcat.title }} <span class="sr-only">(current)</span></a>
-    </div>
+
+    <br>
+    <br>
+    <h2>Tools</h2>
+
+
+
+
+
+  </div>
+
+
+
+
   </div>
 
 

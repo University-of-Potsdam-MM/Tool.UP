@@ -16,7 +16,8 @@
     <!--  <a  *ngFor = "let top of toplevel "class="nav-link register-custom" [routerLink]="['/home', top.id]"  (click)="onClickMe(top.id)">{{top.title}} <span class="sr-only">(current)</span></a> --->
 
   <div class="d-flex p-2 bd-highlight flex-row align-content-start flex-wrap">
-  <app-cards *ngFor = "let top of toplevel" [title]="top.title"> </app-cards>
+  <app-cards *ngFor = "let top of toplevel" [title]="top.title" class="nav-link register-custom" [routerLink]="['/categories', top.id]" > </app-cards>
+
 </div>
 </div>
 

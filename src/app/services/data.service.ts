@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { Category } from 'src/app/interfaces/category';
+import { Application } from '../interfaces/application';
 
 
 const endpoint = 'http://localhost:8080/toolup/';
@@ -44,9 +45,25 @@ export class DataService {
     return body || { };
   }
 
+  private extractApps(res: Category) {
+
+    // transforms array in parsed array of json objects
+    let apps = res.applications;
+    let appsArr = [];
+
+    apps.forEach(apps => {
+      appsArr.push(JSON.parse(apps));
+    });
+    res.applications = appsArr;
+    let body = res;
+    return body || { };
+  }
+
+
+
 
   getAllCats(): Observable<any> {
-    return this.http.get(endpoint + 'category').pipe(
+    return this.http.get(endpoint + 'category/withApplication').pipe(
       map(this.extractData));
   }
 
@@ -56,12 +73,12 @@ export class DataService {
       map(this.extractData));
   }
 
-  getFeature(featureId)
+  
+  getApps(catID)
   {
-    return this.http.get(endpoint + 'feature/' + featureId).pipe(
-      map(this.extractData));
-  }
-
+      return this.http.get<Category>(endpoint + 'category/' + catID).pipe(
+        map(this.extractApps)); 
+}
 
 
   getCatbyID(catID): Observable<any> {
