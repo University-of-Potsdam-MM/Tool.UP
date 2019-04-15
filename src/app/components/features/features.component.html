@@ -8,7 +8,7 @@ Wählen Sie aus der Liste alle Funktionen, die das gesuchte Werkzeug bereitstell
     <div class="row">
       <div class="col">
         <div *ngFor = "let feature of features" class="form-check p-1" >
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+          <input class="form-check-input"  (click)="onClickMe(feature.id)" type="checkbox" value="" id="{{feature.id}}">
           <label class="form-check-label" for="defaultCheck1">
             {{feature.title}}
           </label>
@@ -17,7 +17,7 @@ Wählen Sie aus der Liste alle Funktionen, die das gesuchte Werkzeug bereitstell
 
       <div class="col">
         <div *ngFor = "let feature of first" class="form-check p-1" >
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+          <input class="form-check-input" (click)="onClickMe(feature.id)" type="checkbox" value="" id="defaultCheck1">
           <label class="form-check-label" for="defaultCheck1">
             {{feature.title}}
           </label>
@@ -32,7 +32,7 @@ Wählen Sie aus der Liste alle Funktionen, die das gesuchte Werkzeug bereitstell
 <br>
 <br>
 <br>
-<h4>Die folgenden Tools zeigen die höchste Übereinstimmung mit der gesuchten Feature-Kombination:</h4>
+<h4>Die folgenden Tools enthalten mindestens eines der gesuchten Features:</h4>
 
 </div>
 

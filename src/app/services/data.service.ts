@@ -61,8 +61,44 @@ export class DataService {
     return body || { };
   }
 
+  private extractFeature(res: Application) {
+    let features = res.features; 
+    let featuresArr = []; 
+
+    features.forEach(features => {
+      featuresArr.push(JSON.parse(features)); 
+    }); 
+    res.features = featuresArr; 
+    let body = res;
+    console.log(body); 
+    return body || { };
+  }
+
+  private extractCatsfromApp(res: Application) {
+    let cats = res.categories; 
+    let catsarr = []; 
+
+    cats.forEach(cats => {
+      catsarr.push(JSON.parse(cats)); 
+    }); 
+    res.categories = catsarr; 
+    let body = res;
+    console.log(body); 
+    return body || { };
+  }
 
 
+  getCatsfromApp(appid)
+  {
+    return this.http.get<Application>(endpoint + 'application/' + appid).pipe(
+      map(this.extractCatsfromApp));
+  }
+
+  getFeatures(appid)
+  {
+    return this.http.get<Application>(endpoint + 'application/' + appid).pipe(
+      map(this.extractFeature));
+  }
 
   getAllCats(): Observable<any> {
     return this.http.get(endpoint + 'category/withApplication').pipe(
@@ -80,7 +116,14 @@ export class DataService {
   {
       return this.http.get<Category>(endpoint + 'category/' + catID).pipe(
         map(this.extractApps)); 
-}
+  }
+
+
+  getApp(appID): Observable<any>
+  {
+      return this.http.get(endpoint + 'application/' + appID).pipe(
+        map(this.extractData)); 
+  }
 
 
   getCatbyID(catID): Observable<any> {
@@ -92,7 +135,8 @@ export class DataService {
     return this.http.get<Category[]>(endpoint + 'category/toplevel');
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T> (operation = 'operation', result?: T)
+   {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
@@ -104,6 +148,14 @@ export class DataService {
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
+  }
+
+
+  lookup(data:string): Observable<any>
+  {
+    console.log(data); 
+    return this.http.post(endpoint + "lookup", data).pipe();
+
   }
 
 }

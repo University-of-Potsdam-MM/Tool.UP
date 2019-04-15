@@ -49,7 +49,7 @@
 
         <div class="d-flex p-2 bd-highlight flex-row align-content-start flex-wrap">
             <app-cards *ngFor="let app of apps.applications" [title]="app.title" class="nav-link register-custom"
-                [routerLink]="['/application', app.id]" (click)="onClickMe(app.id)"></app-cards>
+                [routerLink]="['/application', app.id]" (click)="onClickMe(app.id)"></app-cards> 
         </div>
 
     </div>

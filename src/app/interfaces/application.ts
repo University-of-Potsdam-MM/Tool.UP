@@ -5,5 +5,5 @@ export interface Application {
     title: string;
     description: string;
     features: Array<any>;
-    categories: Array<String>;
+    categories: Array<any>;
 }

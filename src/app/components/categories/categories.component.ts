@@ -4,6 +4,7 @@ import { DataService } from 'src/app/services/data.service';
 import { Category } from 'src/app/interfaces/category';
 import { Application } from 'src/app/interfaces/application';
 import { jsonpCallbackContext } from '@angular/common/http/src/module';
+import { applySourceSpanToStatementIfNeeded } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-categories',
@@ -26,8 +27,7 @@ export class CategoriesComponent implements OnInit {
     if (this.id != null) {
       this.getCatbyID(this.id);
       this.getApps(this.id); 
-     // this.getFeature(this.id);  
-    }
+        }
     else {
       this.getAllCats();
     }
@@ -37,8 +37,7 @@ export class CategoriesComponent implements OnInit {
   getAllCats() {
     this.categories = [];
     this.rest.getAllCats().subscribe((data: Array<Category>) => {
-     // console.log(data);
-      this.categories = data;
+    this.categories = data;
     });
   }
 
@@ -48,49 +47,24 @@ export class CategoriesComponent implements OnInit {
       this.apps = []; 
       this.rest.getApps(id).subscribe((data:Array<Application>) => {
       this.apps = data;
-      console.log(data.applications);
-      data.applications.forEach(test => {
-        console.log(test.title); 
-      }); 
+      console.log(this.apps.applications);
     });
-  
   }
   
 
-
   onClickMe(id) {
-    console.log('Clicked!');
-   // this.id = this.route.snapshot.paramMap.get("id");
     this.rest.getCatbyID(id).subscribe((data: Category) => {
-    this.category = data; 
+    this.category = data;
   });
   this.rest.getApps(id).subscribe((data: Array<Application>) => {
     this.apps = data; 
   });
-
-
 }
 
  getCatbyID(id) {
 
   this.rest.getCatbyID(id).subscribe((data: Category) => {
-    //console.log(data);
-    //console.log(data.subCategories[0]);
-    /*
-    let result = [];
-    for(let ele of data.subCategories){
-      console.log(ele);
-      result.push(ele);
-    }
-    console.log(result);
-    */
-    /*
-    let test = data.subCategories[0];
-    test = JSON.parse(test);
-
-    data.subCategories = test;
-*/
-    this.category = data;
+  this.category = data;
   });
  }
 
