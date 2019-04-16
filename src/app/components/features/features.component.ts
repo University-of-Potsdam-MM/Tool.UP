@@ -41,25 +41,29 @@ export class FeaturesComponent implements OnInit {
       var id = this.test.lastIndexOf(featureid);
       if(id <= -1)
         {
-        //nicht enthalten also hinzufügen
-        this.test.push(featureid);
+          //nicht enthalten also hinzufügen
+          this.test.push(featureid);
         }
         else
         {
-        //ist enthalten
-        this.test.splice(id,1)
+          //ist enthalten
+          this.test.splice(id,1)
         }
-        let string = 'features=' + this.test.toString(); 
-        console.log(string); 
-        this.rest.lookup(string).subscribe((data: {}) => {
+      let string = 'features=' + this.test.toString(); 
+      console.log(string); 
+      this.rest.lookup(string).subscribe((data: {}) =>
+        {
         this.response = data;
-    }); 
+        console.log(data); 
+        //console.log(data.bestMatches.title); 
+        }); 
   }
   
     getAllFeatures()
     {
       this.features = [];  
-      this.rest.getAllFeatures().subscribe((data: {}) => {
+      this.rest.getAllFeatures().subscribe((data: {}) => 
+      {
         this.alles = data; 
         this.features = data;
         this.first = (this.features.splice(0,this.features.length/2)); 

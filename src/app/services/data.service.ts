@@ -9,7 +9,7 @@ import { Application } from '../interfaces/application';
 const endpoint = 'http://localhost:8080/toolup/';
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json'
+    'Content-Type':  'application/x-www-form-urlencoded'
   })
 };
 
@@ -154,8 +154,7 @@ export class DataService {
   lookup(data:string): Observable<any>
   {
     console.log(data); 
-    return this.http.post(endpoint + "lookup", data).pipe();
-
+    return this.http.post(endpoint + "lookup", data, httpOptions).pipe();
   }
 
 }
