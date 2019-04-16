@@ -6,13 +6,15 @@ import { Application } from 'src/app/interfaces/application';
 import { jsonpCallbackContext } from '@angular/common/http/src/module';
 import { applySourceSpanToStatementIfNeeded } from '@angular/compiler/src/output/output_ast';
 
-@Component({
+@Component(
+{
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss']
 })
 
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent implements OnInit 
+{
 
   console = console;
   public id;
@@ -21,52 +23,61 @@ export class CategoriesComponent implements OnInit {
   apps:Array<Application> = []; 
   constructor(public rest:DataService, private route: ActivatedRoute, private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
     this.id = this.route.snapshot.paramMap.get("id");
-
-    if (this.id != null) {
+    if (this.id != null) 
+    {
       this.getCatbyID(this.id);
       this.getApps(this.id); 
-        }
-    else {
+    }
+    else 
+    {
       this.getAllCats();
     }
   }
 
 
-  getAllCats() {
+  getAllCats() 
+  {
     this.categories = [];
-    this.rest.getAllCats().subscribe((data: Array<Category>) => {
-    this.categories = data;
+    this.rest.getAllCats().subscribe((data: Array<Category>) => 
+    {
+      this.categories = data;
     });
   }
 
 
   getApps(id)
   {
-      this.apps = []; 
-      this.rest.getApps(id).subscribe((data:Array<Application>) => {
+    this.apps = []; 
+    this.rest.getApps(id).subscribe((data:Array<Application>) => 
+    {
       this.apps = data;
-      console.log(this.apps.applications);
     });
   }
   
 
-  onClickMe(id) {
-    this.rest.getCatbyID(id).subscribe((data: Category) => {
-    this.category = data;
-  });
-  this.rest.getApps(id).subscribe((data: Array<Application>) => {
-    this.apps = data; 
-  });
-}
+  onClickMe(id) 
+  {
+    this.rest.getCatbyID(id).subscribe((data: Category) => 
+    {
+      this.category = data;
+    });
+    this.rest.getApps(id).subscribe((data: Array<Application>) =>
+    {
+      this.apps = data; 
+    });
+  }
 
- getCatbyID(id) {
 
-  this.rest.getCatbyID(id).subscribe((data: Category) => {
-  this.category = data;
-  });
- }
+  getCatbyID(id) 
+  {
+    this.rest.getCatbyID(id).subscribe((data: Category) =>
+    {
+      this.category = data;
+    });
+  }
 
 /*
  getFeature(id)
@@ -78,8 +89,5 @@ export class CategoriesComponent implements OnInit {
  }); 
 }
 */
-
-
-
 
 }

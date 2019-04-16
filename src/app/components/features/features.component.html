@@ -28,12 +28,26 @@ Wählen Sie aus der Liste alle Funktionen, die das gesuchte Werkzeug bereitstell
   <br>
 
 <h4>Die folgenden Tools zeigen die höchste Übereinstimmung mit der gesuchten Feature-Kombination:</h4>
+<div class="d-flex p-2 bd-highlight flex-row align-content-start flex-wrap">
+
+<app-cards *ngFor="let res of response.bestMatches" [title]="res.title"
+                class="nav-link register-custom" [routerLink]="['/application', res.id]"
+                (click)="onClickMe(res.id)"> </app-cards>
+
+ 
+</div>
 <br>
 <br>
 <br>
 <br>
 <h4>Die folgenden Tools enthalten mindestens eines der gesuchten Features:</h4>
 
+  <div class="d-flex p-2 bd-highlight flex-row align-content-start flex-wrap">
+
+    <app-cards *ngFor="let res of response.singleMatches" [title]="res.title"
+    class="nav-link register-custom" [routerLink]="['/application', res.id]"
+    (click)="onClickMe(res.id)"> </app-cards>
+  </div>
 </div>
 
 
