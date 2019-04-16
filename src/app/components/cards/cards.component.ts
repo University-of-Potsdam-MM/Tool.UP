@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 
-@Component({
+@Component(
+{
   selector: 'app-cards',
   templateUrl: './cards.component.html',
   styleUrls: ['./cards.component.scss']
@@ -9,14 +10,16 @@ import { Input } from '@angular/core';
 
 
 
-export class CardsComponent implements OnInit {
+export class CardsComponent implements OnInit
+{
   @Input() title;
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
+
     
   }
 
 
- 
 }
