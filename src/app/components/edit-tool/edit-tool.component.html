@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <h1>Tool editieren</h1>
+    <hr>
+
+    <form  [formGroup]="ToolSelection">
+        <label for="pwd">Tool zum editieren auswählen
+            <select formControlName="selection">
+              <option *ngFor="let test of appsfromWebservice " value="{{test.id}}">{{test.title}}</option>
+            </select> 
+          </label>
+        <button (click)=onclick() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Bestätigen</button>
+      </form> 
+
+
+      <form  [formGroup]="myForm">
+          <div class="form-group">
+            <label for="email">Titel</label>
+            <input  value="{{app.title}}" type="text" class="form-control" formControlName="titel">
+          </div>
+          
+          <div class="form-group">
+            <label for="pwd">Kurzbeschreibung</label>
+            <input  value="{{app.shortDescription}}" type="text" class="form-control"  formControlName="shortdescription">
+          </div>
+  
+          <div class="form-group">
+            <label for="pwd">Kontakt</label>
+            <input  value="{{app.contact}}" type="text" class="form-control" formControlName="contact">
+          </div>
+  
+          <div class="form-group">
+            <label for="pwd">Provider</label>
+            <input  value="{{app.provider}}" type="text" class="form-control"  formControlName="provider">
+          </div>
+  
+          <div class="form-group">
+            <label >Beschreibung</label>
+            <textarea  class="form-control" formControlName="beschreibung" placeholder="{{app.description}}" form="form_id"> hi </textarea>
+          </div>
+  
+          <button (click)=onclick() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Abschicken</button>
+      </form> 
+  
+
+</div>
+        
+        
+   

@@ -28,7 +28,6 @@ export class HomeComponent implements OnInit {
   {
     console.log('Clicked!');
     console.log(id)
-
   }
 
   getTopLevelCats()

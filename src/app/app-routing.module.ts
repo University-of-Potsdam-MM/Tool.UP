@@ -10,6 +10,10 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from "./components/login/login.component";
 import { CardsComponent } from './components/cards/cards.component';
 import { FormComponent } from './components/form/form.component';
+import { MenueComponent } from './components/menue/menue.component';
+import { FeatureFormComponent } from './components/feature-form/feature-form.component';
+import { CatFormComponent } from './components/cat-form/cat-form.component';
+import { EditToolComponent } from './components/edit-tool/edit-tool.component';
 
 const routes: Routes =
 [
@@ -21,9 +25,16 @@ const routes: Routes =
   {path: 'features', component: FeaturesComponent},
   {path: 'features/:id', component: FeaturesComponent},
   {path: 'feature-search', component: FeatureSearchComponent},
+  {path: 'menue', component: MenueComponent},
   {path: 'login', component: LoginComponent},
   {path: 'cards', component: CardsComponent},
   {path: 'form', component: FormComponent},
+  {path: 'addfeature', component: FeatureFormComponent},
+  {path: 'addcategory', component: CatFormComponent},
+  {path: 'edittool', component: EditToolComponent},
+
+
+
 ]
 
 @NgModule({

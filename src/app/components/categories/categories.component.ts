@@ -5,6 +5,7 @@ import { Category } from 'src/app/interfaces/category';
 import { Application } from 'src/app/interfaces/application';
 import { jsonpCallbackContext } from '@angular/common/http/src/module';
 import { applySourceSpanToStatementIfNeeded } from '@angular/compiler/src/output/output_ast';
+import { CardsComponent } from '../cards/cards.component';
 
 @Component(
 {

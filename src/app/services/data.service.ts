@@ -13,11 +13,14 @@ const httpOptions = {
   })
 };
 
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class DataService {
+
+  public loggin = false; 
 
   constructor(public http:HttpClient)
   {
@@ -28,6 +31,20 @@ export class DataService {
   {
     let body = res;
     return body || { };
+  }
+
+  
+
+
+  getloggin()
+  {
+    return this.loggin; 
+  }
+
+
+  setloggin(setloggin)
+  {
+    this.loggin = setloggin; 
   }
 
   private extractCategory(res: Category) {
@@ -122,6 +139,12 @@ export class DataService {
   getApp(appID): Observable<any>
   {
       return this.http.get(endpoint + 'application/' + appID).pipe(
+        map(this.extractData)); 
+  }
+
+  getallApp(): Observable<any>
+  {
+      return this.http.get(endpoint + 'application/').pipe(
         map(this.extractData)); 
   }
 

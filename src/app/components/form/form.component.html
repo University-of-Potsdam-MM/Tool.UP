@@ -1,5 +1,67 @@
 <div class="container-fluid">
     <h1>Tool hinzufügen</h1>
     <hr>
-    
+
+    <form  [formGroup]="myForm">
+        
+
+        <div class="form-group">
+          <label for="email">Titel</label>
+          <input type="text" class="form-control" formControlName="titel">
+        </div>
+        
+        <div class="form-group">
+          <label for="pwd">Kurzbeschreibung</label>
+          <input type="text" class="form-control"  formControlName="shortdescription">
+        </div>
+
+        <div class="form-group">
+          <label for="pwd">Kontakt</label>
+          <input type="text" class="form-control" formControlName="contact">
+        </div>
+
+        <div class="form-group">
+          <label for="pwd">Provider</label>
+          <input type="text" class="form-control"  formControlName="provider">
+        </div>
+
+        <div class="form-group">
+          <label for="pwd">Beschreibung</label>
+          <input type="text" class="form-control" id="pwd" formControlName="beschreibung">
+        </div>
+
+        <div class="form-group" formArrayName="features">
+                <div *ngFor="let feature of features.controls; let i = index" [formGroupName]="i">
+                  <label for="pwd">Feature
+                    <select formControlName="id">
+                      <option *ngFor="let test of featuresFromWebservice" value="{{test.id}}">{{test.title}}</option>
+                    </select> 
+                  </label>
+                  <button (click)=deleteFeature(i) class="btn btn-outline-danger my-2 my-sm-0" type="submit">Löschen</button>
+              </div>
+          </div>
+          <button (click)=addFeature() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Feature hinzufügen</button>
+          <br>
+          <br>
+          <div class="form-group" formArrayName="kategorien">
+              <div *ngFor="let cat of cats.controls; let i = index" [formGroupName]="i">
+                <label for="pwd">Kategorie
+                  <select formControlName="name">
+                    <option *ngFor="let test of catsFromWebservice" value="{{test.id}}"  >{{test.title}}</option>
+                  </select> 
+                </label>
+                <button (click)=deleteCats(i) class="btn btn-outline-danger my-2 my-sm-0"  type="submit">Löschen</button>
+            </div>
+        </div>
+        <br>
+        <button (click)=addCats() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Kategorie hinzufügen</button>
+        <br>
+        <br>
+        <br>
+        <button (click)=onclick() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Abschicken</button>
+    </form> 
+
 </div>
+        
+        
+   

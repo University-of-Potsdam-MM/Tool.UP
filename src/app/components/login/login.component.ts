@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 import { RouterLink, Router } from '@angular/router';
 import { FormComponent } from '../form/form.component';
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { DataService } from 'src/app/services/data.service';
 
 @Component(
 {
@@ -13,28 +15,36 @@ import { FormComponent } from '../form/form.component';
 
 export class LoginComponent implements OnInit 
 {
-  constructor(private router: Router) { }
+  login: FormGroup; 
+  constructor(private router: Router , private fb: FormBuilder, public rest:DataService) { }
 
   ngOnInit() 
   {
-  
-  
+    this.login = this.fb.group(
+      {
+        email: '', 
+        password: ''  
+      }); 
+
   }
 
   oncklick()
   {
-    let email =  document.getElementById("email"); 
-    let pwd = document.getElementById("password"); 
-    if(email.value == "Finn" && pwd.value == "bacon1234")
+    let  credentials = this.login.getRawValue();  
+    if(credentials.email == "finnziehe@mailbox.org" && credentials.password == "bacon1234" )
     {
-      console.log("if");
-      this.router.navigate(['/form']); 
+      this.router.navigate(['/menue']); 
+      this.setloggin(true);
     }
     else
     {
-      alert("Falsche Daten");   
+      alert("Falsche Daten");
     }
+  }
 
+  setloggin(setloggin)
+  { 
+    this.rest.setloggin(setloggin); 
   }
 }
 

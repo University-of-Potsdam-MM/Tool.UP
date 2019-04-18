@@ -16,7 +16,11 @@ import { CardsComponent } from './components/cards/cards.component';
 import { FormComponent } from './components/form/form.component';
 import { Routes } from '@angular/router';
 import { ApplicationsComponent } from './components/applications/applications.component';
-
+import { ReactiveFormsModule } from "@angular/forms";
+import { CatFormComponent } from './components/cat-form/cat-form.component';
+import { FeatureFormComponent } from './components/feature-form/feature-form.component';
+import { MenueComponent } from './components/menue/menue.component';
+import { EditToolComponent } from './components/edit-tool/edit-tool.component';
 
 
 const appRoutes: Routes = [
@@ -40,9 +44,14 @@ const appRoutes: Routes = [
     LoginComponent,
     CardsComponent,
     FormComponent,
-    ApplicationsComponent
+    ApplicationsComponent,
+    CatFormComponent,
+    FeatureFormComponent,
+    MenueComponent,
+    EditToolComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,

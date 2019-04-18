@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <h1>Kategorie hinzufügen</h1>
+    <hr>
+
+    <form  [formGroup]="myForm">
+        <div class="form-group">
+          <label for="email">Titel</label>
+          <input type="text" class="form-control" formControlName="titel">
+        </div>
+        
+        <div class="form-group">
+            <label for="pwd">Beschreibung</label>
+            <input type="text" class="form-control" id="pwd" formControlName="beschreibung">
+        </div>
+
+        <div class="form-group" formArrayName="apps">
+                <div *ngFor="let app of apps.controls; let i = index" [formGroupName]="i">
+                  <label for="pwd">Tool
+                    <select formControlName="name">
+                      <option *ngFor="let test of appsfromWebservice " value="{{test.id}}">{{test.title}}</option>
+                    </select> 
+                  </label>
+                  <button (click)=deleteapps(i) class="btn btn-outline-danger my-2 my-sm-0" type="submit">Löschen</button>
+              </div>
+          </div>
+          <button (click)=addapps() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Tool hinzufügen</button>
+          <br>
+          <br>
+          <div class="form-group" formArrayName="superCategory">
+              <div *ngFor="let superCat of superCategory.controls; let i = index" [formGroupName]="i">
+                <label for="pwd">Überkategorie
+                  <select formControlName="name">
+                    <option *ngFor="let test of superCatsFromWebservice " value="{{test.id}}">{{test.title}}</option>
+                  </select> 
+                </label>
+                <button (click)=deletesuperCategory(i) class="btn btn-outline-danger my-2 my-sm-0" type="submit">Löschen</button>
+            </div>
+        </div>
+        <button (click)=addSuperCategory() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Überkategorie hinzufügen</button>
+        <br>
+        <br>
+        <button (click)=onclick() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Abschicken</button>
+    </form> 
+</div>
+        
+        
+   

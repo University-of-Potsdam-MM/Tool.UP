@@ -12,6 +12,10 @@
               <a class="nav-link login-custom" routerLink="/categories">Kategorien<span class="sr-only">(current)</span></a>
           </li>
          
+          <li class="nav-item" *ngIf="loggedIN">
+                <a class="nav-link login-custom" routerLink="/categories">SHOW<span class="sr-only">(current)</span></a>
+            </li>
+
       </ul>
       <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -20,7 +24,8 @@
     
         <form class="form-inline my-2 my-lg-0 m-2">
             <button class="btn btn-outline-success my-2 my-sm-0"  routerLink="/login" type="submit">Login</button>
-          </form>
+        </form>
+        
   </div>
 </nav>
 
