@@ -1,3 +1,10 @@
-<p>
-  feature-search works!
-</p>
+<div class="container-fluid">
+  <h1>Die folgenden Tools entsprechen ihrer Suche</h1>
+
+  <h2>  </h2>
+  <div class="d-flex p-2 bd-highlight flex-row align-content-start flex-wrap">
+
+<app-cards *ngFor="let app of applications" [title]="app.title" class="nav-link register-custom" [routerLink]="['/application', app.id]"> </app-cards>
+
+  </div>
+</div>

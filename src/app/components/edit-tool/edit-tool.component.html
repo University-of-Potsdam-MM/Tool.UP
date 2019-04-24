@@ -11,8 +11,8 @@
         <button (click)=onclick() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Bestätigen</button>
       </form> 
 
-
-      <form  [formGroup]="myForm">
+        
+      <form  [formGroup]="myForm"  *ngIf="clicked">
           <div class="form-group">
             <label for="email">Titel</label>
             <input  value="{{app.title}}" type="text" class="form-control" formControlName="titel">
@@ -35,12 +35,71 @@
   
           <div class="form-group">
             <label >Beschreibung</label>
-            <textarea  class="form-control" formControlName="beschreibung" placeholder="{{app.description}}" form="form_id"> hi </textarea>
+            <textarea  class="form-control" formControlName="beschreibung" form="form_id">{{app.description}} </textarea>
           </div>
-  
-          <button (click)=onclick() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Abschicken</button>
-      </form> 
-  
+
+          <button (click)=onupdate() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Update</button>
+          <br>
+          <br>
+         <!--
+          <button (click)=editfeatures() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Features bearbeiten</button>
+          <br>
+
+         <div *ngIf="editfeature">
+          <label>Features zum löschen anklicken</label>
+              <div *ngFor = "let feature of featureForApp.features " class="form-check p-1" >
+                  <input class="form-check-input" (click)="clickFeature(feature.id)" type="checkbox" value="" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    {{feature.title}}
+                  </label>
+              </div> 
+              <br>
+
+          <div class="form-group" formArrayName="features">
+            <div *ngFor="let feature of features.controls; let i = index" [formGroupName]="i">
+              <label for="pwd">Feature
+                <select formControlName="id">
+                  <option *ngFor="let test of featuresFromWebservice" value="{{test.id}}">{{test.title}}</option>
+                </select> 
+              </label>
+              <button (click)=deleteFeature(i) class="btn btn-outline-danger my-2 my-sm-0" type="submit">Löschen</button>
+          </div>
+      </div>
+      <button (click)=addFeature() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Feature hinzufügen</button>
+      <br>
+      <br>
+    </div>
+    <br>
+    <button (click)=editcats() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Kategorien bearbeiten</button>
+<div *ngIf="editcat">
+    <br>
+      <label>Kategorien zum löschen anklicken</label>
+      <div *ngFor = "let cat of catsForApp.categories" class="form-check p-1" >
+          <input class="form-check-input" (click)="clickCategory(cat.id)" type="checkbox" value="" id="defaultCheck1">
+          <label class="form-check-label" for="defaultCheck1">
+            {{cat.title}}
+          </label>
+      </div> 
+
+      <br>
+
+  <div class="form-group" formArrayName="kategorien">
+
+    <div *ngFor="let cat of cats.controls; let i = index" [formGroupName]="i">
+      <label for="pwd">Kategorie
+        <select formControlName="name">
+          <option *ngFor="let test of catsFromWebservice" value="{{test.id}}">{{test.title}}</option>
+        </select> 
+      </label>
+      <button (click)=deleteCats(i) class="btn btn-outline-danger my-2 my-sm-0" type="submit">Löschen</button>
+  </div>
+</div>
+<button (click)=addCats() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Kategorie hinzufügen</button>
+<br>
+<br>
+</div>
+-->
+</form> 
 
 </div>
         

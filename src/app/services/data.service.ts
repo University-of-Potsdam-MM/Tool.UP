@@ -4,13 +4,19 @@ import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { Category } from 'src/app/interfaces/category';
 import { Application } from '../interfaces/application';
-
+import { RawSource } from 'webpack-sources';
 
 const endpoint = 'http://localhost:8080/toolup/';
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/x-www-form-urlencoded'
   })
+};
+
+const httpOptionsPOST = {
+  headers: new HttpHeaders({
+    'Content-Type' : 'application/json',  })
 };
 
 
@@ -59,7 +65,7 @@ export class DataService {
     res.subCategories = subCatArr;
     
     let body = res;
-    console.log(body); 
+    //console.log(body); 
     return body || { };
   }
 
@@ -74,7 +80,7 @@ export class DataService {
     });
     res.applications = appsArr;
     let body = res;
-    console.log(body); 
+    //console.log(body); 
     return body || { };
   }
 
@@ -87,7 +93,7 @@ export class DataService {
     }); 
     res.features = featuresArr; 
     let body = res;
-    console.log(body); 
+    //console.log(body); 
     return body || { };
   }
 
@@ -100,7 +106,7 @@ export class DataService {
     }); 
     res.categories = catsarr; 
     let body = res;
-    console.log(body); 
+    //console.log(body); 
     return body || { };
   }
 
@@ -176,8 +182,22 @@ export class DataService {
 
   lookup(data:string): Observable<any>
   {
-    console.log(data); 
+   // console.log(data); 
     return this.http.post(endpoint + "lookup", data, httpOptions).pipe();
   }
 
+  search(data:string): Observable<any>
+  {
+   // console.log(data); 
+    return this.http.post(endpoint + "search", data, httpOptions).pipe();
+  }
+
+
+
+  addTool(data:string): Observable<any>
+  {
+    return this.http.post(endpoint + "application", data, httpOptionsPOST).pipe(); 
+  }
+
 }
+

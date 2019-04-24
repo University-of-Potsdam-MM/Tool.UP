@@ -24,7 +24,7 @@ const routes: Routes =
   {path: 'application/:id', component: ApplicationsComponent},
   {path: 'features', component: FeaturesComponent},
   {path: 'features/:id', component: FeaturesComponent},
-  {path: 'feature-search', component: FeatureSearchComponent},
+  {path: 'feature-search/:string', component: FeatureSearchComponent},
   {path: 'menue', component: MenueComponent},
   {path: 'login', component: LoginComponent},
   {path: 'cards', component: CardsComponent},

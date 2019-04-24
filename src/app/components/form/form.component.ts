@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormArray } from "@angular/forms";
 import { DataService } from 'src/app/services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/interfaces/category';
+import { generateExpandoInstructionBlock } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-form',
@@ -16,33 +17,36 @@ export class FormComponent implements OnInit
   catsFromWebservice:Array<Category>= [];  
   constructor(private fb: FormBuilder, public rest:DataService, private route: ActivatedRoute, private router: Router) { }
   featuresFromWebservice:any = []; 
+  appsfromWebservice:any = []; 
+
   //unusedFeatures:any = [];
   //filteredFeatures:any = [];
   //lastaddedFeature;
   values:any = []; 
   testtest:any = []; 
-
-
+  
 
   ngOnInit() 
   {
     this.getFeaturesfromWebservice(); 
     this.getCatsfromWebservice(); 
-
+    this.getappsfromWebservice(); 
 
     this.myForm = this.fb.group(
     {
-      titel: '', 
-      shortdescription: '', 
+      uuid: '' , 
+      title: '', 
+      description: '', 
+      shortDescription: '', 
       contact: '', 
-      provider: '', 
-      beschreibung:'', 
-      features: this.fb.array([]), 
-      kategorien: this.fb.array([])
+      provider:'', 
+    //  features: this.fb.array([]), 
+    // kategorien: this.fb.array([])
     }); 
 
-    this.myForm.valueChanges.subscribe(console.log); 
-    this.onChanges(); 
+    this.myForm.valueChanges.subscribe(console.log);
+    console.log(this.generateInserId()); 
+
   }
 
   
@@ -50,7 +54,8 @@ export class FormComponent implements OnInit
     return this.myForm.get('kategorien') as FormArray; 
   }
 
-  onChanges(): void {
+  
+  /*onChanges(): void {
     this.myForm.get("features").valueChanges.subscribe(val => { 
       /*
       this.lastaddedFeature = val[val.length-1].id;
@@ -65,11 +70,50 @@ export class FormComponent implements OnInit
       }
 
       this.unusedFeatures = this.filteredFeatures;
-      console.log(this.filteredFeatures); */
+      console.log(this.filteredFeatures); 
     });
   }
+*/
 
+  generateInserId()
+  {
+      function sortNumber(a,b)
+    {
+        return a - b;
+    }
+
+  let splitedids = []; 
+  let ids = []; 
+    this.appsfromWebservice.forEach(element => 
+    {
+      splitedids.push(element.id.split("-"));
+    });
+    splitedids.forEach(element => 
+    {
+      ids.push((element[1])); 
+    });
+    
+    ids.sort(sortNumber); 
+    let insertID = Number.parseInt(ids[ids.length-1], 10) + 1; 
+    return "application-" + insertID; 
+  }
+
+
+  onclick()
+  {
+   this.addTool(this.myForm.getRawValue()); 
+  }
   
+
+  addTool(json)
+  {
+    this.rest.addTool(JSON.stringify(json)).subscribe((data: {}) =>
+        {
+          console.log(data); 
+        }); 
+  }
+
+
   addCats()
   {
     const cat = this.fb.group(
@@ -77,7 +121,6 @@ export class FormComponent implements OnInit
         name: []
       }); 
     this.cats.push(cat);
-      
   }
 
   deleteCats(i)
@@ -106,9 +149,7 @@ export class FormComponent implements OnInit
       });
 
     this.features.push(features); 
-
     console.log(features.value); 
-    
 
   }
 
@@ -153,7 +194,24 @@ export class FormComponent implements OnInit
       this.catsFromWebservice = data;
     });
   }
+
+
+
+  getappsfromWebservice()
+  {
+    this.appsfromWebservice = [];  
+    this.rest.getallApp().subscribe((data: {}) => 
+    {
+      this.appsfromWebservice = data;
+      //this.unusedFeatures = data;
+      this.myForm.setValue({uuid:this.generateInserId(), title:"", description:"", shortDescription:"", contact:"", provider:""}); 
+    });
+  }
+  
+
 }
+
+
 
 
 
