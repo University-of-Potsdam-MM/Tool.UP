@@ -82,7 +82,7 @@ export class EditToolComponent implements OnInit
 
   ondelete()
   {
-   // this.deleteTool(this.ToolSelection.getRawValue().selection); 
+    this.deleteTool(this.ToolSelection.getRawValue().selection); 
     alert("Erfolg"); 
     window.location.reload(); 
   }

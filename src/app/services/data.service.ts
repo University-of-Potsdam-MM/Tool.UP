@@ -208,9 +208,9 @@ export class DataService
     return this.http.post(endpoint + "", data, httpOptionsPOST).pipe(); 
   }
 
-  deleteTool(data:string):Observable<any>
+  deleteTool(appID:string):Observable<any>
   {
-    return this.http.delete(endpoint + "").pipe(); 
+    return this.http.delete(endpoint + 'application/' + appID).pipe(); 
   }
 }
 
