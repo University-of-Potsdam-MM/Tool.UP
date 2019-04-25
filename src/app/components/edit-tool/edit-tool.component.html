@@ -3,9 +3,9 @@
     <hr>
 
     <form  [formGroup]="ToolSelection">
-        <label for="pwd">Tool zum editieren auswählen
+        <label >Tool zum editieren auswählen
             <select formControlName="selection">
-              <option *ngFor="let test of appsfromWebservice " value="{{test.id}}">{{test.title}}</option>
+              <option *ngFor="let app of appsfromWebservice " value="{{app.id}}">{{app.title}}</option>
             </select> 
           </label>
         <button (click)=onclick() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Bestätigen</button>
@@ -15,32 +15,32 @@
       <form  [formGroup]="myForm"  *ngIf="clicked">
           <div class="form-group">
             <label for="email">Titel</label>
-            <input  value="{{app.title}}" type="text" class="form-control" formControlName="titel">
+            <input  value="{{app.title}}" type="text" class="form-control" formControlName="title">
           </div>
           
           <div class="form-group">
-            <label for="pwd">Kurzbeschreibung</label>
-            <input  value="{{app.shortDescription}}" type="text" class="form-control"  formControlName="shortdescription">
+            <label >Kurzbeschreibung</label>
+            <input  value="{{app.shortDescription}}" type="text" class="form-control"  formControlName="shortDescription">
           </div>
   
           <div class="form-group">
-            <label for="pwd">Kontakt</label>
+            <label >Kontakt</label>
             <input  value="{{app.contact}}" type="text" class="form-control" formControlName="contact">
           </div>
   
           <div class="form-group">
-            <label for="pwd">Provider</label>
+            <label >Provider</label>
             <input  value="{{app.provider}}" type="text" class="form-control"  formControlName="provider">
           </div>
   
           <div class="form-group">
             <label >Beschreibung</label>
-            <textarea  class="form-control" formControlName="beschreibung" form="form_id">{{app.description}} </textarea>
+            <textarea  class="form-control" formControlName="description" placeholder="{{app.description}}" form="form_id"></textarea>
           </div>
 
           <button (click)=onupdate() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Update</button>
-          <br>
-          <br>
+          <button (click)=ondelete() class="btn btn-outline-danger my-2 my-sm-0"  type="submit">Tool löschen</button>
+
          <!--
           <button (click)=editfeatures() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Features bearbeiten</button>
           <br>
@@ -99,8 +99,7 @@
 <br>
 </div>
 -->
-</form> 
-
+    </form> 
 </div>
         
         

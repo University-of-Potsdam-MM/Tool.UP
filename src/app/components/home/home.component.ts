@@ -2,17 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 
-@Component({
+@Component(
+{
   selector: 'app-root',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+
+export class HomeComponent implements OnInit 
+{
 
   toplevel:any = []; 
-  public id; 
+  public id:string; 
   constructor(public rest:DataService, private route: ActivatedRoute, private router: Router) { }
-
 
   ngOnInit() 
   {
@@ -20,22 +22,15 @@ export class HomeComponent implements OnInit {
     this.getTopLevelCats();     
   }
 
-
-
-
-
-  onClickMe(id) 
-  {
-    console.log('Clicked!');
-    console.log(id)
-  }
-
   getTopLevelCats()
   {
     this.toplevel = [];
-    this.rest.getTopLevelCats().subscribe((data: {}) => {
+    this.rest.getTopLevelCats().subscribe((data: {}) => 
+    {
       //console.log(data);
       this.toplevel = data;
     });
+ 
   }
+
 }

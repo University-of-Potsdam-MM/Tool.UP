@@ -10,15 +10,15 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit 
+{
   public loggedIN: boolean = false; 
   constructor(public rest:DataService, private router: Router ) { }
 
   response:any = []; 
   search:string; 
-  ngOnInit() 
-  {
-  }
+
+  ngOnInit(){}
 
   onSubmit()
   {

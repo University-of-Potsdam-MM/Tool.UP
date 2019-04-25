@@ -2,20 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { FormBuilder, FormGroup, FormArray } from "@angular/forms";
 
-@Component({
+@Component(
+{
   selector: 'app-cat-form',
   templateUrl: './cat-form.component.html',
   styleUrls: ['./cat-form.component.scss']
 })
-export class CatFormComponent implements OnInit {
-
-  
+export class CatFormComponent implements OnInit 
+{
   myForm: FormGroup; 
   appsfromWebservice:any = []; 
   superCatsFromWebservice:any = []; 
 
   constructor(private fb: FormBuilder,  public rest:DataService) { }
-
 
   ngOnInit() 
   {
@@ -32,7 +31,8 @@ export class CatFormComponent implements OnInit {
       this.myForm.valueChanges.subscribe(console.log); 
   }
   
-  get apps() {
+  get apps() 
+  {
     return this.myForm.get('apps') as FormArray; 
   }
 
@@ -60,8 +60,8 @@ export class CatFormComponent implements OnInit {
     }); 
   }
 
-
-  get superCategory() {
+  get superCategory() 
+  {
     return this.myForm.get('superCategory') as FormArray; 
   }
 
@@ -88,4 +88,11 @@ export class CatFormComponent implements OnInit {
       console.log(data); 
     }); 
   }
+  
+  onclick()
+  {
+
+  }
+
 }
+

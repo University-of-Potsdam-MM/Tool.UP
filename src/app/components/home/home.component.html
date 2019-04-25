@@ -1,24 +1,18 @@
 <div class="container-fluid">
-    <h1>Tool.UP</h1>
-    <hr>
-    Zeit sparen, Frust vermeiden? Mit den richtigen Software-Werkzeugen können Sie Forschung und Lehre noch effizienter organisieren. Tool.UP hilft Ihnen, die passenden Werkzeuge für Ihren Bedarf zu finden.
-    <br>
-    <br>
-    <h3>Legen Sie los!</h3>
-    Nutzen Sie eine der folgenden Möglichkeiten, um sich über verfügbare Software zu informieren:
-    <ul>
-        <li> Wählen Sie eine Kategorie aus dem Menü</li>
-        <li> suchen Sie Software mit einer Kombination von Features </li>
-        <li> nutzen Sie die Volltextsuche</li>
-        <li> stöbern Sie durch die aufgeführten Oberkategorien.</li>
-    </ul>
- 
-    <!--  <a  *ngFor = "let top of toplevel "class="nav-link register-custom" [routerLink]="['/home', top.id]"  (click)="onClickMe(top.id)">{{top.title}} <span class="sr-only">(current)</span></a> --->
-
+  <h1>Tool.UP</h1>
+  <hr>
+  Zeit sparen, Frust vermeiden? Mit den richtigen Software-Werkzeugen können Sie Forschung und Lehre noch effizienter organisieren. Tool.UP hilft Ihnen, die passenden Werkzeuge für Ihren Bedarf zu finden.
+  <h3 class="p-2">Legen Sie los!</h3>
+  Nutzen Sie eine der folgenden Möglichkeiten, um sich über verfügbare Software zu informieren:
+  <ul>
+    <li> Wählen Sie eine Kategorie aus dem Menü</li>
+    <li> suchen Sie Software mit einer Kombination von Features </li>
+    <li> nutzen Sie die Volltextsuche</li>
+    <li> stöbern Sie durch die aufgeführten Oberkategorien.</li>
+  </ul>
   <div class="d-flex p-2 bd-highlight flex-row align-content-start flex-wrap">
-  <app-cards *ngFor = "let top of toplevel" [title]="top.title" class="nav-link register-custom" [routerLink]="['/categories', top.id]" > </app-cards>
-
-</div>
+    <app-cards *ngFor = "let top of toplevel" [title]="top.title" class="nav-link register-custom" [routerLink]="['/categories', top.id]"> </app-cards>
+  </div>
 </div>
 
 

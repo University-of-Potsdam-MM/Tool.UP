@@ -3,8 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { Category } from 'src/app/interfaces/category';
 import { Application } from 'src/app/interfaces/application';
-import { jsonpCallbackContext } from '@angular/common/http/src/module';
-import { applySourceSpanToStatementIfNeeded } from '@angular/compiler/src/output/output_ast';
 import { CardsComponent } from '../cards/cards.component';
 
 @Component(
@@ -38,7 +36,6 @@ export class CategoriesComponent implements OnInit
     }
   }
 
-
   getAllCats() 
   {
     this.categories = [];
@@ -47,7 +44,6 @@ export class CategoriesComponent implements OnInit
       this.categories = data;
     });
   }
-
 
   getApps(id)
   {
@@ -58,7 +54,6 @@ export class CategoriesComponent implements OnInit
     });
   }
   
-
   onClickMe(id) 
   {
     this.rest.getCatbyID(id).subscribe((data: Category) => 
@@ -71,7 +66,6 @@ export class CategoriesComponent implements OnInit
     });
   }
 
-
   getCatbyID(id) 
   {
     this.rest.getCatbyID(id).subscribe((data: Category) =>
@@ -79,16 +73,4 @@ export class CategoriesComponent implements OnInit
       this.category = data;
     });
   }
-
-/*
- getFeature(id)
- {
-
-  this.rest.getFeature(id).subscribe((data: Application) => {
-  this.apps = data; 
-
- }); 
-}
-*/
-
 }

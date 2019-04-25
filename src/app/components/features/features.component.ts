@@ -6,17 +6,19 @@ import { strictEqual } from 'assert';
 //import { lookup } from 'dns';
 
 
-@Component({
+@Component(
+{
   selector: 'app-features',
   templateUrl: './features.component.html',
   styleUrls: ['./features.component.scss']
 })
-export class FeaturesComponent implements OnInit {
 
-  public id; 
-  public split; 
+export class FeaturesComponent implements OnInit 
+{
+
+  public id:string; 
+  public split:string; 
   checked = false; 
-  
 
   constructor(public rest:DataService, private route: ActivatedRoute, private router: Router) { }
   features:any = []; 
@@ -28,57 +30,42 @@ export class FeaturesComponent implements OnInit {
   response:any = []; 
 
   
-    ngOnInit() 
-    {
-      this.id = this.route.snapshot.paramMap.get("id");
-      this.getAllFeatures(); 
-    }
-
-
-    onClickMe(featureid)
-    { 
-      let rest = []
-      var id = this.test.lastIndexOf(featureid);
-      if(id <= -1)
-        {
-          //nicht enthalten also hinzufügen
-          this.test.push(featureid);
-        }
-        else
-        {
-          //ist enthalten
-          this.test.splice(id,1)
-        }
-      let string = 'features=' + this.test.toString(); 
-      console.log(string); 
-      this.rest.lookup(string).subscribe((data: {}) =>
-        {
-        this.response = data;
-        console.log(data); 
-        //console.log(data.bestMatches.title); 
-        }); 
+  ngOnInit() 
+  {
+    this.id = this.route.snapshot.paramMap.get("id");
+    this.getAllFeatures(); 
   }
-  
-    getAllFeatures()
-    {
-      this.features = [];  
-      this.rest.getAllFeatures().subscribe((data: {}) => 
+
+
+  onClickMe(featureid)
+  { 
+    let rest = []
+    var id = this.test.lastIndexOf(featureid);
+    if(id <= -1)
       {
-        this.alles = data; 
-        this.features = data;
-        this.first = (this.features.splice(0,this.features.length/2)); 
-      });
-    }
-  
-    /*getFeature(id)
+        //nicht enthalten also hinzufügen
+        this.test.push(featureid);
+      }
+      else
+      {
+        //ist enthalten
+        this.test.splice(id,1)
+      }
+    let string = 'features=' + this.test.toString(); 
+    this.rest.lookup(string).subscribe((data: {}) =>
+      {
+      this.response = data;
+      }); 
+  }
+
+  getAllFeatures()
+  {
+    this.features = [];  
+    this.rest.getAllFeatures().subscribe((data: {}) => 
     {
-      this.feature = [];
-      this.rest.getAllFeatures().subscribe((data: {}) => {
-      this.feature = data;
-        //console.log(this.categories); 
-      });
-    }
-  */
-
-
+      this.alles = data; 
+      this.features = data;
+      this.first = (this.features.splice(0,this.features.length/2)); 
+    });
+  }
 }

@@ -27,8 +27,6 @@ export class FeatureSearchComponent implements OnInit
   this.rest.search(query).subscribe((data: {}) =>
    {
    this.applications = data;
-   console.log(data); 
    }); 
   }
-
 }

@@ -8,24 +8,30 @@ import { RawSource } from 'webpack-sources';
 
 const endpoint = 'http://localhost:8080/toolup/';
 
-const httpOptions = {
-  headers: new HttpHeaders({
+const httpOptions = 
+{
+  headers: new HttpHeaders(
+  {
     'Content-Type':  'application/x-www-form-urlencoded'
   })
 };
 
-const httpOptionsPOST = {
-  headers: new HttpHeaders({
-    'Content-Type' : 'application/json',  })
+const httpOptionsPOST = 
+{
+  headers: new HttpHeaders(
+  {
+    'Content-Type' : 'application/json',  
+  })
 };
 
 
-@Injectable({
+@Injectable(
+{
   providedIn: 'root'
 })
 
-export class DataService {
-
+export class DataService 
+{
   public loggin = false; 
 
   constructor(public http:HttpClient)
@@ -40,70 +46,76 @@ export class DataService {
   }
 
   
-
-
   getloggin()
   {
     return this.loggin; 
   }
-
 
   setloggin(setloggin)
   {
     this.loggin = setloggin; 
   }
 
-  private extractCategory(res: Category) {
-
-    // transforms array in parsed array of json objects
+  private extractCategory(res: Category) 
+  {
     let subCat = res.subCategories;
     let subCatArr = [];
 
-    subCat.forEach(subcat => {
+    subCat.forEach(subcat => 
+    {
       subCatArr.push(JSON.parse(subcat));
     });
+
     res.subCategories = subCatArr;
     
     let body = res;
-    //console.log(body); 
     return body || { };
   }
 
-  private extractApps(res: Category) {
+  private extractApps(res: Category) 
+  {
 
     // transforms array in parsed array of json objects
     let apps = res.applications;
     let appsArr = [];
 
-    apps.forEach(apps => {
+    apps.forEach(apps => 
+    {
       appsArr.push(JSON.parse(apps));
     });
+
     res.applications = appsArr;
     let body = res;
     //console.log(body); 
     return body || { };
   }
 
-  private extractFeature(res: Application) {
+  private extractFeature(res: Application)
+  {
     let features = res.features; 
     let featuresArr = []; 
 
-    features.forEach(features => {
+    features.forEach(features => 
+    {
       featuresArr.push(JSON.parse(features)); 
     }); 
+    
     res.features = featuresArr; 
     let body = res;
     //console.log(body); 
     return body || { };
   }
 
-  private extractCatsfromApp(res: Application) {
+  private extractCatsfromApp(res: Application) 
+  {
     let cats = res.categories; 
     let catsarr = []; 
 
-    cats.forEach(cats => {
+    cats.forEach(cats => 
+    {
       catsarr.push(JSON.parse(cats)); 
     }); 
+    
     res.categories = catsarr; 
     let body = res;
     //console.log(body); 
@@ -134,13 +146,11 @@ export class DataService {
       map(this.extractData));
   }
 
-  
   getApps(catID)
   {
       return this.http.get<Category>(endpoint + 'category/' + catID).pipe(
         map(this.extractApps)); 
   }
-
 
   getApp(appID): Observable<any>
   {
@@ -154,31 +164,27 @@ export class DataService {
         map(this.extractData)); 
   }
 
-
-  getCatbyID(catID): Observable<any> {
+  getCatbyID(catID): Observable<any> 
+  {
     return this.http.get<Category>(endpoint + 'category/' + catID).pipe(
       map(this.extractCategory));
   }
 
-  getTopLevelCats(): Observable<any> {
+  getTopLevelCats(): Observable<any> 
+  {
     return this.http.get<Category[]>(endpoint + 'category/toplevel');
   }
 
   private handleError<T> (operation = 'operation', result?: T)
    {
-    return (error: any): Observable<T> => {
+    return (error: any): Observable<T> => 
+    {
 
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
+      console.error(error);
       console.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
-
 
   lookup(data:string): Observable<any>
   {
@@ -192,12 +198,19 @@ export class DataService {
     return this.http.post(endpoint + "search", data, httpOptions).pipe();
   }
 
-
-
   addTool(data:string): Observable<any>
   {
     return this.http.post(endpoint + "application", data, httpOptionsPOST).pipe(); 
   }
 
+  updateTool(data:string):Observable<any>
+  {
+    return this.http.post(endpoint + "", data, httpOptionsPOST).pipe(); 
+  }
+
+  deleteTool(data:string):Observable<any>
+  {
+    return this.http.delete(endpoint + "").pipe(); 
+  }
 }
 

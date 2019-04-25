@@ -1,6 +1,7 @@
 import { Application } from './application';
 
-export interface Feature {
+export interface Feature 
+{
     id: string;
     title: string;
     applications: Array<any>;

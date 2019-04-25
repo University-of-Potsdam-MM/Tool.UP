@@ -25,7 +25,6 @@ export class FormComponent implements OnInit
   values:any = []; 
   testtest:any = []; 
   
-
   ngOnInit() 
   {
     this.getFeaturesfromWebservice(); 
@@ -46,11 +45,11 @@ export class FormComponent implements OnInit
 
     this.myForm.valueChanges.subscribe(console.log);
     console.log(this.generateInserId()); 
-
   }
 
   
-  get cats() {
+  get cats() 
+  {
     return this.myForm.get('kategorien') as FormArray; 
   }
 
@@ -77,7 +76,7 @@ export class FormComponent implements OnInit
 
   generateInserId()
   {
-      function sortNumber(a,b)
+    function sortNumber(a,b)
     {
         return a - b;
     }
@@ -102,15 +101,17 @@ export class FormComponent implements OnInit
   onclick()
   {
    this.addTool(this.myForm.getRawValue()); 
+   alert("Erfolg!");
+   window.location.reload(); 
   }
   
 
   addTool(json)
   {
     this.rest.addTool(JSON.stringify(json)).subscribe((data: {}) =>
-        {
+    {
           console.log(data); 
-        }); 
+    }); 
   }
 
 
@@ -150,32 +151,13 @@ export class FormComponent implements OnInit
 
     this.features.push(features); 
     console.log(features.value); 
-
   }
 
   deleteFeature(i)
   {
     this.features.removeAt(i); 
   }
-  /*
-  onclick()
-  {
-    console.log(this.myForm.getRawValue().features);
-    let features = this.myForm.getRawValue().features; 
-    let featuresarr = []; 
-    for (let feat of features){
-      if (featuresarr.)
-
-    }
-    //console.log(features.lenght()); 
-    console.log()
-    features.forEach(element => 
-    {
-      featuresarr.push(element.id);
-    });
-  }*/
-
-
+ 
   getFeaturesfromWebservice()
   {
     this.featuresFromWebservice = [];  
@@ -195,8 +177,6 @@ export class FormComponent implements OnInit
     });
   }
 
-
-
   getappsfromWebservice()
   {
     this.appsfromWebservice = [];  
@@ -207,8 +187,6 @@ export class FormComponent implements OnInit
       this.myForm.setValue({uuid:this.generateInserId(), title:"", description:"", shortDescription:"", contact:"", provider:""}); 
     });
   }
-  
-
 }
 
 

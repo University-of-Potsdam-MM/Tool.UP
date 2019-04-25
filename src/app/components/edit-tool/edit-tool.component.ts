@@ -29,11 +29,7 @@ export class EditToolComponent implements OnInit
   deletedCategories = []; 
   catsForApp:Array<Application> = [];
   catsFromWebservice:Array<Category>= [];  
-
-
-
-
-  
+    
   ngOnInit() 
   {
   
@@ -42,25 +38,20 @@ export class EditToolComponent implements OnInit
     this.getCatsfromWebservice(); 
     this.myForm = this.fb.group(
       {
-        titel: '', 
-        shortdescription: '', 
+        title: '', 
+        description: '', 
+        shortDescription: '', 
         contact: '', 
-        provider: '', 
-        beschreibung:'', 
-        features: this.fb.array([]), 
-        kategorien: this.fb.array([])
+        provider:'' 
+        //features: this.fb.array([]), 
+        //kategorien: this.fb.array([])
       }); 
-      this.myForm.valueChanges.subscribe(console.log); 
-
+      this.myForm.valueChanges.subscribe(console.log);
 
     this.ToolSelection = this.fb.group(
       {
         selection:''
       }); 
-
-
-      
-
   }
 
   get cats() 
@@ -77,7 +68,6 @@ export class EditToolComponent implements OnInit
     this.cats.push(cat);
   }
 
-
   deleteCats(i)
   {
     this.cats.removeAt(i); 
@@ -85,9 +75,16 @@ export class EditToolComponent implements OnInit
 
   onupdate()
   {
-    //POST Updatet Values into Database and reload Page
+    //this.updateTool(this.myForm.getRawValue()); 
+    //alert("Erfolg!");
+    //window.location.reload();
+  }
 
-
+  ondelete()
+  {
+   // this.deleteTool(this.ToolSelection.getRawValue().selection); 
+    alert("Erfolg"); 
+    window.location.reload(); 
   }
 
   get features()
@@ -112,10 +109,7 @@ export class EditToolComponent implements OnInit
       });
 
     this.features.push(features); 
-
-
-   // this.features.push(JSON.parse('{"id":"feature-19999"}')); 
-    }
+  }
 
 
   deleteFeature(i)
@@ -126,15 +120,10 @@ export class EditToolComponent implements OnInit
   onclick()
   {
     this.clicked = true; 
-    //console.log(this.ToolSelection.getRawValue().selection); 
     this.getAppforEdit(this.ToolSelection.getRawValue().selection); 
     this.getFeaturesforApp(this.ToolSelection.getRawValue().selection);
-    this.getCatsfromApp(this.ToolSelection.getRawValue().selection)
-    
-    //this.features.push("feature-999999"); 
-    
+    this.getCatsfromApp(this.ToolSelection.getRawValue().selection)    
   }
-
 
   getappsfromWebservice()
   {
@@ -142,7 +131,6 @@ export class EditToolComponent implements OnInit
     this.rest.getallApp().subscribe((data: {}) => 
     {
       this.appsfromWebservice = data;
-      //this.unusedFeatures = data;
     });
   }
 
@@ -171,12 +159,10 @@ export class EditToolComponent implements OnInit
       var id = this.deletedFeatures.lastIndexOf(featureid);
       if(id <= -1)
         {
-          //nicht enthalten also hinzufügen
           this.deletedFeatures.push(featureid);
         }
         else
         {
-          //ist enthalten
           this.deletedFeatures.splice(id,1)
         }
     console.log(this.deletedFeatures); 
@@ -188,17 +174,13 @@ export class EditToolComponent implements OnInit
     let rest = []
       var id = this.deletedCategories.lastIndexOf(category);
       if(id <= -1)
-        {
-          //nicht enthalten also hinzufügen
-          this.deletedCategories.push(category);
-        }
-        else
-        {
-          //ist enthalten
-          this.deletedCategories.splice(id,1)
-        }
-    console.log(this.deletedCategories); 
-
+      {
+        this.deletedCategories.push(category);
+      }
+      else
+      {
+        this.deletedCategories.splice(id,1)
+      }
   }
 
   getCatsforApp(appid)
@@ -210,15 +192,12 @@ export class EditToolComponent implements OnInit
     });
   }
 
-  
-
   getCatsfromApp(id)
   {
     this.catsForApp = []; 
     this.rest.getCatsfromApp(id).subscribe((data:Array<Application>) =>
      {
       this.catsForApp = data; 
-      console.log(data); 
     }); 
   }
 
@@ -228,11 +207,8 @@ export class EditToolComponent implements OnInit
     this.rest.getAllFeatures().subscribe((data: {}) => 
     {
       this.featuresFromWebservice = data;
-      //this.unusedFeatures = data;
     });
   }
-
-
 
   getCatsfromWebservice()
   {
@@ -253,6 +229,21 @@ export class EditToolComponent implements OnInit
     this.editcat = !this.editcat; 
   }
 
+  updateTool(json)
+  {
+    this.rest.updateTool(JSON.stringify(json)).subscribe((data: {}) =>
+    {
+          console.log(data); 
+    }); 
+  }
+
+  deleteTool(toolID)
+  {
+    this.rest.deleteTool(toolID).subscribe((data: {}) =>
+    {
+      console.log(data); 
+    }); 
+  }
 
 }
 

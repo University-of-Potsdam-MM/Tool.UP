@@ -1,6 +1,7 @@
 import { Application } from 'src/app/interfaces/application';
 
-export interface Category{
+export interface Category
+{
   id: string;
   title: string;
   description: string;

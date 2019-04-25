@@ -11,8 +11,6 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class FeatureFormComponent implements OnInit
 {
-
-
   myForm: FormGroup; 
   appsfromWebservice:any = []; 
 
@@ -27,10 +25,11 @@ export class FeatureFormComponent implements OnInit
         beschreibung:'', 
         apps: this.fb.array([])
       }); 
-      this.myForm.valueChanges.subscribe(console.log); 
+     // this.myForm.valueChanges.subscribe(console.log); 
   }
 
-  get apps() {
+  get apps() 
+  {
     return this.myForm.get('apps') as FormArray; 
   }
 
@@ -54,11 +53,12 @@ export class FeatureFormComponent implements OnInit
     this.rest.getallApp().subscribe((data: {}) => 
     {
       this.appsfromWebservice = data;
-      //this.unusedFeatures = data;
     });
-
-
   }
 
+  onclick()
+  {
+    
+  }
 
 }

@@ -26,7 +26,6 @@ export class ApplicationsComponent implements OnInit
   ngOnInit() 
   {
     this.id = this.route.snapshot.paramMap.get("id");
-    console.log(this.id); 
     this.getApp(this.id); 
     this.getFeatures(this.id); 
     this.getCatsfromApp(this.id); 
@@ -48,7 +47,6 @@ export class ApplicationsComponent implements OnInit
     this.rest.getFeatures(id).subscribe((data:Array<Feature>) => 
     {
       this.features = data;
-      console.log(data);  
     });
   }
 
@@ -59,7 +57,6 @@ export class ApplicationsComponent implements OnInit
     this.rest.getCatsfromApp(id).subscribe((data:Array<Application>) =>
      {
       this.cats = data; 
-      console.log(data); 
     }); 
   }
 }

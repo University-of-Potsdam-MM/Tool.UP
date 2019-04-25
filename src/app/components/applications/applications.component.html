@@ -2,20 +2,12 @@
   <h1>{{app.title}}</h1>
   <hr>
   {{app.description}}
-  <br>
-  <br>
   <h2>Features</h2>
-  <br>
-  <br>
   <div class="d-flex p-2 bd-highlight flex-row align-content-start flex-wrap">
-  <app-cards *ngFor="let feature of features.features" [title]="feature.title" class="nav-link register-custom" > </app-cards> 
+    <app-cards *ngFor="let feature of features.features" [title]="feature.title" class="nav-link register-custom" > </app-cards> 
   </div>
-  <br>
-  <br>
   <h2>Kategorien</h2>
-  <br>
-  <br>
   <div class="d-flex p-2 bd-highlight flex-row align-content-start flex-wrap">
     <app-cards *ngFor="let cat of cats.categories" [title]="cat.title" [routerLink]="['/categories', cat.id]" class="nav-link register-custom"> </app-cards> 
-    </div>
+  </div>
 </div>

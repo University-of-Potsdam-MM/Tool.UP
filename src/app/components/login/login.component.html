@@ -3,13 +3,13 @@
   <hr>
   <form [formGroup]="login">
     <div class="form-group">
-      <label for="email">Email Adresse:</label>
-      <input type="email" class="form-control" id="email" formControlName="email">
+      <label >Email Adresse:</label>
+      <input type="email" class="form-control" formControlName="email">
     </div>
     <div class="form-group">
-      <label for="pwd">Passwort:</label>
-      <input type="password" class="form-control" id="password" formControlName="password"> 
+      <label>Passwort:</label>
+      <input type="password" class="form-control" formControlName="password"> 
     </div>
-    <button (click)=oncklick() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Login</button>
+    <button (click)=oncklick() class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
   </form> 
 </div>

@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit
         email: '', 
         password: ''  
       }); 
-
   }
 
   oncklick()
@@ -49,17 +48,3 @@ export class LoginComponent implements OnInit
 }
 
 
-
-
-
-/*
-export class RegisterForm
-{
-  registerUser(form: NgForm)
-  {
-    console.log(form.value); 
-   // {email: '...', password: '...'}
-
-  }
-
-}*/

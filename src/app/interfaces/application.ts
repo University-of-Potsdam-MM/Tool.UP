@@ -1,6 +1,7 @@
 import { Feature } from 'src/app/interfaces/feature';
 
-export interface Application {
+export interface Application 
+{
     id: string;
     title: string;
     description: string;
