@@ -7,7 +7,7 @@ import { ApplicationsComponent } from './components/applications/applications.co
 import { FeatureSearchComponent } from './components/feature-search/feature-search.component';
 import { FormsModule } from '@angular/forms';
 
-import { LoginComponent } from "./components/login/login.component";
+import { LoginComponent } from './components/login/login.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { FormComponent } from './components/form/form.component';
 import { MenueComponent } from './components/menue/menue.component';
@@ -17,6 +17,7 @@ import { EditToolComponent } from './components/edit-tool/edit-tool.component';
 
 const routes: Routes =
 [
+  {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
   {path: 'home/:id', component: HomeComponent},
   {path: 'categories', component: CategoriesComponent},
@@ -32,21 +33,18 @@ const routes: Routes =
   {path: 'addfeature', component: FeatureFormComponent},
   {path: 'addcategory', component: CatFormComponent},
   {path: 'edittool', component: EditToolComponent},
-
-
-
 ]
 
 @NgModule(
 {
   imports: [RouterModule.forRoot(routes), FormsModule],
-  exports: [RouterModule], 
+  exports: [RouterModule],
 })
 
-
-export class AppRoutingModule 
+/**
+ * @class AppRoutingModule
+ */
+export class AppRoutingModule
 {
 
 }
-
-

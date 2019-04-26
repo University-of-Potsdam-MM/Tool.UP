@@ -8,12 +8,22 @@ import { FormBuilder, FormGroup, FormArray } from "@angular/forms";
   templateUrl: './cat-form.component.html',
   styleUrls: ['./cat-form.component.scss']
 })
+
+/**
+ * @class CatFormComponent
+ * @implements OnInit
+ */
 export class CatFormComponent implements OnInit 
 {
   myForm: FormGroup; 
   appsfromWebservice:any = []; 
   superCatsFromWebservice:any = []; 
 
+  /**
+   * @constructor
+   * @param {FormBuilder} fb
+   * @param {DataService} rest
+   */
   constructor(private fb: FormBuilder,  public rest:DataService) { }
 
   ngOnInit() 
@@ -36,6 +46,9 @@ export class CatFormComponent implements OnInit
     return this.myForm.get('apps') as FormArray; 
   }
 
+  /**
+   * @
+   */
   addapps()
   {
     const apps = this.fb.group(

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
-import { FormBuilder, FormGroup, FormArray } from "@angular/forms";
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { Application } from 'src/app/interfaces/application';
 import { Feature } from 'src/app/interfaces/feature';
 import { Category } from 'src/app/interfaces/category';
@@ -10,54 +10,54 @@ import { Category } from 'src/app/interfaces/category';
   templateUrl: './edit-tool.component.html',
   styleUrls: ['./edit-tool.component.scss']
 })
-export class EditToolComponent implements OnInit 
+export class EditToolComponent implements OnInit
 {
-  appsfromWebservice:any = []; 
-  myForm: FormGroup; 
-  ToolSelection: FormGroup; 
-  app:Array<Application> = []; 
-  clickedFeature: boolean = false; 
-  editfeature: boolean = false; 
-  editcat: boolean = false; 
+  appsfromWebservice:any = [];
+  myForm: FormGroup;
+  ToolSelection: FormGroup;
+  app:Array<Application> = [];
+  clickedFeature: boolean = false;
+  editfeature: boolean = false;
+  editcat: boolean = false;
   constructor(private fb: FormBuilder,  public rest:DataService) { }
-  featureForApp:Array<Feature> = []; 
-  categories:Array<Application> = []; 
-  featuresFromWebservice:any = []; 
-  appFeatures:any = []; 
-  clicked = false; 
-  deletedFeatures = []; 
-  deletedCategories = []; 
+  featureForApp:Array<Feature> = [];
+  categories:Array<Application> = [];
+  featuresFromWebservice:any = [];
+  appFeatures:any = [];
+  clicked = false;
+  deletedFeatures = [];
+  deletedCategories = [];
   catsForApp:Array<Application> = [];
-  catsFromWebservice:Array<Category>= [];  
-    
-  ngOnInit() 
+  catsFromWebservice:Array<Category>= [];
+
+  ngOnInit()
   {
-  
-    this.getappsfromWebservice(); 
-    this.getFeaturesfromWebservice(); 
-    this.getCatsfromWebservice(); 
+
+    this.getappsfromWebservice();
+    this.getFeaturesfromWebservice();
+    this.getCatsfromWebservice();
     this.myForm = this.fb.group(
       {
-        uuid: '', 
-        title: '', 
-        description: '', 
-        shortDescription: '', 
-        contact: '', 
-        provider:'' 
-        //features: this.fb.array([]), 
+        uuid: '',
+        title: '',
+        description: '',
+        shortDescription: '',
+        contact: '',
+        provider:''
+        //features: this.fb.array([]),
         //kategorien: this.fb.array([])
-      }); 
+      });
       this.myForm.valueChanges.subscribe(console.log);
 
     this.ToolSelection = this.fb.group(
       {
         selection:''
-      }); 
+      });
   }
 
-  get cats() 
+  get cats()
   {
-    return this.myForm.get('kategorien') as FormArray; 
+    return this.myForm.get('kategorien') as FormArray;
   }
 
   addCats()
@@ -65,32 +65,32 @@ export class EditToolComponent implements OnInit
     const cat = this.fb.group(
       {
         name: []
-      }); 
+      });
     this.cats.push(cat);
   }
 
   deleteCats(i)
   {
-    this.cats.removeAt(i); 
+    this.cats.removeAt(i);
   }
 
   onupdate()
   {
-    this.updateTool(this.myForm.getRawValue()); 
+    this.updateTool(this.myForm.getRawValue());
     alert("Erfolg!");
     window.location.reload();
   }
 
   ondelete()
   {
-    this.deleteTool(this.ToolSelection.getRawValue().selection); 
-    alert("Erfolg"); 
-    window.location.reload(); 
+    this.deleteTool(this.ToolSelection.getRawValue().selection);
+    alert("Erfolg");
+    window.location.reload();
   }
 
   get features()
   {
-    return this.myForm.get('features') as FormArray; 
+    return this.myForm.get('features') as FormArray;
   }
 
   addFeature()
@@ -99,38 +99,38 @@ export class EditToolComponent implements OnInit
     const features = this.fb.group(
       {
         id: []
-      }); 
+      });
 
-    let feature = this.myForm.getRawValue().features; 
-    let featuresarr = []; 
+    let feature = this.myForm.getRawValue().features;
+    let featuresarr = [];
 
-    feature.forEach(element => 
+    feature.forEach(element =>
       {
         featuresarr.push(element.id);
       });
 
-    this.features.push(features); 
+    this.features.push(features);
   }
 
 
   deleteFeature(i)
   {
-    this.features.removeAt(i); 
+    this.features.removeAt(i);
   }
 
   onclick()
   {
-    this.clicked = true; 
-    this.getAppforEdit(this.ToolSelection.getRawValue().selection); 
+    this.clicked = true;
+    this.getAppforEdit(this.ToolSelection.getRawValue().selection);
     this.getFeaturesforApp(this.ToolSelection.getRawValue().selection);
-    this.getCatsfromApp(this.ToolSelection.getRawValue().selection)    
-    this.myForm.setValue({uuid:this.ToolSelection.getRawValue().selection, title:"", description:"", shortDescription:"", contact:"", provider:""}); 
+    this.getCatsfromApp(this.ToolSelection.getRawValue().selection)
+    this.myForm.setValue({uuid:this.ToolSelection.getRawValue().selection, title:"", description:"", shortDescription:"", contact:"", provider:""});
   }
 
   getappsfromWebservice()
   {
-    this.appsfromWebservice = [];  
-    this.rest.getallApp().subscribe((data: {}) => 
+    this.appsfromWebservice = [];
+    this.rest.getallApp().subscribe((data: {}) =>
     {
       this.appsfromWebservice = data;
     });
@@ -139,21 +139,21 @@ export class EditToolComponent implements OnInit
 
   getAppforEdit(appid)
   {
-    this.app = []; 
-      this.rest.getApp(appid).subscribe((data:Array<Application>) => 
+    this.app = [];
+      this.rest.getApp(appid).subscribe((data:Array<Application>) =>
       {
-        this.app = data; 
+        this.app = data;
       });
   }
 
   getFeaturesforApp(appid)
   {
     this.featureForApp = [];
-    this.rest.getFeatures(appid).subscribe((data:Array<Feature>) => 
+    this.rest.getFeatures(appid).subscribe((data:Array<Feature>) =>
     {
       this.featureForApp = data;
     });
-    
+
   }
 
   clickFeature(featureid)
@@ -187,26 +187,26 @@ export class EditToolComponent implements OnInit
 
   getCatsforApp(appid)
   {
-    this.categories = []; 
+    this.categories = [];
     this.rest.getCatsfromApp(appid).subscribe((data:Array<Application>) =>
      {
-      this.categories = data; 
+      this.categories = data;
     });
   }
 
   getCatsfromApp(id)
   {
-    this.catsForApp = []; 
+    this.catsForApp = [];
     this.rest.getCatsfromApp(id).subscribe((data:Array<Application>) =>
      {
-      this.catsForApp = data; 
-    }); 
+      this.catsForApp = data;
+    });
   }
 
   getFeaturesfromWebservice()
   {
-    this.featuresFromWebservice = [];  
-    this.rest.getAllFeatures().subscribe((data: {}) => 
+    this.featuresFromWebservice = [];
+    this.rest.getAllFeatures().subscribe((data: {}) =>
     {
       this.featuresFromWebservice = data;
     });
@@ -214,8 +214,8 @@ export class EditToolComponent implements OnInit
 
   getCatsfromWebservice()
   {
-    this.catsFromWebservice = [];  
-    this.rest.getAllCats().subscribe((data:  Array<Category>) => 
+    this.catsFromWebservice = [];
+    this.rest.getAllCats().subscribe((data:  Array<Category>) =>
     {
       this.catsFromWebservice = data;
     });
@@ -223,28 +223,28 @@ export class EditToolComponent implements OnInit
 
   editfeatures()
   {
-    this.editfeature = !this.editfeature; 
+    this.editfeature = !this.editfeature;
   }
 
   editcats()
   {
-    this.editcat = !this.editcat; 
+    this.editcat = !this.editcat;
   }
 
   updateTool(json)
   {
     this.rest.updateTool(JSON.stringify(json)).subscribe((data: {}) =>
     {
-          console.log(data); 
-    }); 
+          console.log(data);
+    });
   }
 
   deleteTool(toolID)
   {
     this.rest.deleteTool(toolID).subscribe((data: {}) =>
     {
-      console.log(data); 
-    }); 
+      console.log(data);
+    });
   }
 
 }
