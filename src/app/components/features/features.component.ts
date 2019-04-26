@@ -28,6 +28,7 @@ export class FeaturesComponent implements OnInit
   second:any = []; 
   test = []; 
   response:any = []; 
+  empty:boolean = true; 
 
   
   ngOnInit() 
@@ -54,10 +55,12 @@ export class FeaturesComponent implements OnInit
       console.log(this.test); 
     if (this.test.length == 0)
     {
-      console.log("true") //Do nothing here
+      this.empty = true; 
+      this.response = []; 
     }
     else
     {
+      this.empty = false; 
       let string = 'features=' + this.test.toString(); 
       this.rest.lookup(string).subscribe((data: {}) =>
         {
