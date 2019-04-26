@@ -205,7 +205,7 @@ export class DataService
 
   updateTool(data:string):Observable<any>
   {
-    return this.http.post(endpoint + "", data, httpOptionsPOST).pipe(); 
+    return this.http.patch(endpoint + "application",  data, httpOptionsPOST).pipe(); 
   }
 
   deleteTool(appID:string):Observable<any>

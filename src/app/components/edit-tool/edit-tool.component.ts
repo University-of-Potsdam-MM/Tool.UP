@@ -38,6 +38,7 @@ export class EditToolComponent implements OnInit
     this.getCatsfromWebservice(); 
     this.myForm = this.fb.group(
       {
+        uuid: '', 
         title: '', 
         description: '', 
         shortDescription: '', 
@@ -75,9 +76,9 @@ export class EditToolComponent implements OnInit
 
   onupdate()
   {
-    //this.updateTool(this.myForm.getRawValue()); 
-    //alert("Erfolg!");
-    //window.location.reload();
+    this.updateTool(this.myForm.getRawValue()); 
+    alert("Erfolg!");
+    window.location.reload();
   }
 
   ondelete()
@@ -123,6 +124,7 @@ export class EditToolComponent implements OnInit
     this.getAppforEdit(this.ToolSelection.getRawValue().selection); 
     this.getFeaturesforApp(this.ToolSelection.getRawValue().selection);
     this.getCatsfromApp(this.ToolSelection.getRawValue().selection)    
+    this.myForm.setValue({uuid:this.ToolSelection.getRawValue().selection, title:"", description:"", shortDescription:"", contact:"", provider:""}); 
   }
 
   getappsfromWebservice()
@@ -132,6 +134,7 @@ export class EditToolComponent implements OnInit
     {
       this.appsfromWebservice = data;
     });
+
   }
 
   getAppforEdit(appid)
@@ -165,7 +168,6 @@ export class EditToolComponent implements OnInit
         {
           this.deletedFeatures.splice(id,1)
         }
-    console.log(this.deletedFeatures); 
   }
 
 
