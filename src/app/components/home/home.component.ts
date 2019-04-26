@@ -9,28 +9,28 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent implements OnInit 
+export class HomeComponent implements OnInit
 {
 
-  toplevel:any = []; 
-  public id:string; 
+  toplevel:any = [];
+  public id:string;
   constructor(public rest:DataService, private route: ActivatedRoute, private router: Router) { }
 
-  ngOnInit() 
+  ngOnInit()
   {
     this.id = this.route.snapshot.paramMap.get("id");
-    this.getTopLevelCats();     
+    this.getTopLevelCats();
   }
 
   getTopLevelCats()
   {
     this.toplevel = [];
-    this.rest.getTopLevelCats().subscribe((data: {}) => 
+    this.rest.getTopLevelCats().subscribe((data: {}) =>
     {
       //console.log(data);
       this.toplevel = data;
     });
- 
+
   }
 
 }

@@ -9,7 +9,7 @@ import { Feature } from '../interfaces/feature';
 
 const endpoint = 'http://localhost:8080/toolup/';
 
-const httpOptions = 
+const httpOptions =
 {
   headers: new HttpHeaders(
   {
@@ -17,11 +17,11 @@ const httpOptions =
   })
 };
 
-const httpOptionsPOST = 
+const httpOptionsPOST =
 {
   headers: new HttpHeaders(
   {
-    'Content-Type' : 'application/json',  
+    'Content-Type' : 'application/json',
   })
 };
 
@@ -31,9 +31,9 @@ const httpOptionsPOST =
   providedIn: 'root'
 })
 
-export class DataService 
+export class DataService
 {
-  public loggin = false; 
+  public loggin = false;
 
   constructor(public http:HttpClient)
   {
@@ -46,97 +46,97 @@ export class DataService
     return body || { };
   }
 
-  
+
   getloggin()
   {
-    return this.loggin; 
+    return this.loggin;
   }
 
   setloggin(setloggin)
   {
-    this.loggin = setloggin; 
+    this.loggin = setloggin;
   }
 
-  private extractCategory(res: Category) 
+  private extractCategory(res: Category)
   {
     let subCat = res.subCategories;
     let subCatArr = [];
 
-    subCat.forEach(subcat => 
+    subCat.forEach(subcat =>
     {
       subCatArr.push(JSON.parse(subcat));
     });
 
     res.subCategories = subCatArr;
-    
+
     let body = res;
     return body || { };
   }
 
-  private extractApps(res: Category) 
+  private extractApps(res: Category)
   {
 
     // transforms array in parsed array of json objects
     let apps = res.applications;
     let appsArr = [];
 
-    apps.forEach(apps => 
+    apps.forEach(apps =>
     {
       appsArr.push(JSON.parse(apps));
     });
 
     res.applications = appsArr;
     let body = res;
-    //console.log(body); 
+    //console.log(body);
     return body || { };
   }
 
   private extractFeature(res: Application)
   {
-    let features = res.features; 
-    let featuresArr = []; 
+    let features = res.features;
+    let featuresArr = [];
 
-    features.forEach(features => 
+    features.forEach(features =>
     {
-      featuresArr.push(JSON.parse(features)); 
-    }); 
-    
-    res.features = featuresArr; 
+      featuresArr.push(JSON.parse(features));
+    });
+
+    res.features = featuresArr;
     let body = res;
-    //console.log(body); 
+    //console.log(body);
     return body || { };
   }
 
-  private extractCatsfromApp(res: Application) 
+  private extractCatsfromApp(res: Application)
   {
-    let cats = res.categories; 
-    let catsarr = []; 
+    let cats = res.categories;
+    let catsarr = [];
 
-    cats.forEach(cats => 
+    cats.forEach(cats =>
     {
-      catsarr.push(JSON.parse(cats)); 
-    }); 
-    
-    res.categories = catsarr; 
+      catsarr.push(JSON.parse(cats));
+    });
+
+    res.categories = catsarr;
     let body = res;
-    //console.log(body); 
+    //console.log(body);
     return body || { };
   }
 
 
-  private extractAppsfromFeatures(res: Feature) 
+  private extractAppsfromFeatures(res: Feature)
   {
-    let features = res.applications; 
-    let featuresarr = []; 
+    let features = res.applications;
+    let featuresarr = [];
 
-    features.forEach(features => 
+    features.forEach(features =>
     {
-      featuresarr.push(JSON.parse(features)); 
-    }); 
-    
-    res.applications = featuresarr; 
+      featuresarr.push(JSON.parse(features));
+    });
+
+    res.applications = featuresarr;
     let body = res;
-    //console.log(body); 
+    //console.log(body);
     return body || { };
   }
 
@@ -173,35 +173,35 @@ export class DataService
   getApps(catID)
   {
       return this.http.get<Category>(endpoint + 'category/' + catID).pipe(
-        map(this.extractApps)); 
+        map(this.extractApps));
   }
 
   getApp(appID): Observable<any>
   {
       return this.http.get(endpoint + 'application/' + appID).pipe(
-        map(this.extractData)); 
+        map(this.extractData));
   }
 
   getallApp(): Observable<any>
   {
       return this.http.get(endpoint + 'application/').pipe(
-        map(this.extractData)); 
+        map(this.extractData));
   }
 
-  getCatbyID(catID): Observable<any> 
+  getCatbyID(catID): Observable<any>
   {
     return this.http.get<Category>(endpoint + 'category/' + catID).pipe(
       map(this.extractCategory));
   }
 
-  getTopLevelCats(): Observable<any> 
+  getTopLevelCats(): Observable<any>
   {
     return this.http.get<Category[]>(endpoint + 'category/toplevel');
   }
 
   private handleError<T> (operation = 'operation', result?: T)
    {
-    return (error: any): Observable<T> => 
+    return (error: any): Observable<T> =>
     {
 
       console.error(error);
@@ -212,29 +212,29 @@ export class DataService
 
   lookup(data:string): Observable<any>
   {
-   // console.log(data); 
+   // console.log(data);
     return this.http.post(endpoint + "lookup", data, httpOptions).pipe();
   }
 
   search(data:string): Observable<any>
   {
-   // console.log(data); 
+   // console.log(data);
     return this.http.post(endpoint + "search", data, httpOptions).pipe();
   }
 
   addTool(data:string): Observable<any>
   {
-    return this.http.post(endpoint + "application", data, httpOptionsPOST).pipe(); 
+    return this.http.post(endpoint + "application", data, httpOptionsPOST).pipe();
   }
 
   updateTool(data:string):Observable<any>
   {
-    return this.http.patch(endpoint + "application",  data, httpOptionsPOST).pipe(); 
+    return this.http.patch(endpoint + "application",  data, httpOptionsPOST).pipe();
   }
 
   deleteTool(appID:string):Observable<any>
   {
-    return this.http.delete(endpoint + 'application/' + appID).pipe(); 
+    return this.http.delete(endpoint + 'application/' + appID).pipe();
   }
 }
 

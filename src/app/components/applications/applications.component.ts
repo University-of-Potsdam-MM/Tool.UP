@@ -9,42 +9,42 @@ import { Feature } from 'src/app/interfaces/feature';
 {
   selector: 'app-applications',
   templateUrl: './applications.component.html',
-  styleUrls: ['./applications.component.scss']  
+  styleUrls: ['./applications.component.scss']
 })
 
 
-export class ApplicationsComponent implements OnInit 
+export class ApplicationsComponent implements OnInit
 {
   constructor(public rest:DataService, private route: ActivatedRoute, private router: Router) { }
   @Input() apptitle;
 
-  public id; 
-  app:Array<Application> = []; 
-  features:Array<Feature> = []; 
-  cats:Array<Application> = []; 
+  public id;
+  app:Array<Application> = [];
+  features:Array<Feature> = [];
+  cats:Array<Application> = [];
 
-  ngOnInit() 
+  ngOnInit()
   {
     this.id = this.route.snapshot.paramMap.get("id");
-    this.getApp(this.id); 
-    this.getFeatures(this.id); 
-    this.getCatsfromApp(this.id); 
+    this.getApp(this.id);
+    this.getFeatures(this.id);
+    this.getCatsfromApp(this.id);
   }
 
 
   getApp(id)
   {
-      this.app = []; 
-      this.rest.getApp(id).subscribe((data:Array<Application>) => 
+      this.app = [];
+      this.rest.getApp(id).subscribe((data:Array<Application>) =>
       {
-        this.app = data; 
+        this.app = data;
       });
   }
 
   getFeatures(id)
   {
     this.features = [];
-    this.rest.getFeatures(id).subscribe((data:Array<Feature>) => 
+    this.rest.getFeatures(id).subscribe((data:Array<Feature>) =>
     {
       this.features = data;
     });
@@ -53,10 +53,10 @@ export class ApplicationsComponent implements OnInit
 
   getCatsfromApp(id)
   {
-    this.cats = []; 
+    this.cats = [];
     this.rest.getCatsfromApp(id).subscribe((data:Array<Application>) =>
      {
-      this.cats = data; 
-    }); 
+      this.cats = data;
+    });
   }
 }

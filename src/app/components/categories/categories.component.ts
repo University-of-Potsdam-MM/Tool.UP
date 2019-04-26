@@ -12,34 +12,34 @@ import { CardsComponent } from '../cards/cards.component';
   styleUrls: ['./categories.component.scss']
 })
 
-export class CategoriesComponent implements OnInit 
+export class CategoriesComponent implements OnInit
 {
 
   console = console;
   public id;
   category:Category;
   categories:Array<Category> = [];
-  apps:Array<Application> = []; 
+  apps:Array<Application> = [];
   constructor(public rest:DataService, private route: ActivatedRoute, private router: Router) { }
 
-  ngOnInit() 
+  ngOnInit()
   {
     this.id = this.route.snapshot.paramMap.get("id");
-    if (this.id != null) 
+    if (this.id != null)
     {
       this.getCatbyID(this.id);
-      this.getApps(this.id); 
+      this.getApps(this.id);
     }
-    else 
+    else
     {
       this.getAllCats();
     }
   }
 
-  getAllCats() 
+  getAllCats()
   {
     this.categories = [];
-    this.rest.getAllCats().subscribe((data: Array<Category>) => 
+    this.rest.getAllCats().subscribe((data: Array<Category>) =>
     {
       this.categories = data;
     });
@@ -47,49 +47,49 @@ export class CategoriesComponent implements OnInit
 
   getApps(id)
   {
-    this.apps = []; 
-    this.rest.getApps(id).subscribe((data:Array<Application>) => 
+    this.apps = [];
+    this.rest.getApps(id).subscribe((data:Array<Application>) =>
     {
       this.apps = data;
     });
   }
-  
+
 
   onClickapp(id)
   {
-    console.log(id); 
+    console.log(id);
     this.rest.getApps(id).subscribe((data: Array<Application>) =>
     {
-      this.apps = data; 
+      this.apps = data;
     });
   }
 
-  onClickMe(id) 
+  onClickMe(id)
   {
-    let splited = id.split("-"); 
+    let splited = id.split("-");
     if(splited[0] == "application")
     {
       //Do nothing here
     }else
     {
-      console.log(id); 
+      console.log(id);
       this.rest.getApps(id).subscribe((data: Array<Application>) =>
       {
-        this.apps = data; 
-        console.log("getApps"); 
+        this.apps = data;
+        console.log("getApps");
       });
-  
-      this.rest.getCatbyID(id).subscribe((data: Category) => 
+
+      this.rest.getCatbyID(id).subscribe((data: Category) =>
       {
         this.category = data;
-        console.log("getCATbyID"); 
+        console.log("getCATbyID");
       });
-      
+
     }
-    
+
   }
 
-  getCatbyID(id) 
+  getCatbyID(id)
   {
     this.rest.getCatbyID(id).subscribe((data: Category) =>
     {

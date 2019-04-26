@@ -11,26 +11,26 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class FeatureFormComponent implements OnInit
 {
-  myForm: FormGroup; 
-  appsfromWebservice:any = []; 
+  myForm: FormGroup;
+  appsfromWebservice:any = [];
 
   constructor(private fb: FormBuilder,  public rest:DataService) { }
 
-  ngOnInit() 
+  ngOnInit()
   {
-    this.getappsfromWebservice(); 
+    this.getappsfromWebservice();
     this.myForm = this.fb.group(
       {
-        titel: '', 
-        beschreibung:'', 
+        titel: '',
+        beschreibung:'',
         apps: this.fb.array([])
-      }); 
-     // this.myForm.valueChanges.subscribe(console.log); 
+      });
+     // this.myForm.valueChanges.subscribe(console.log);
   }
 
-  get apps() 
+  get apps()
   {
-    return this.myForm.get('apps') as FormArray; 
+    return this.myForm.get('apps') as FormArray;
   }
 
   addapps()
@@ -38,19 +38,19 @@ export class FeatureFormComponent implements OnInit
     const apps = this.fb.group(
       {
         name: []
-      }); 
+      });
     this.apps.push(apps);
   }
 
   deleteapps(i)
   {
-    this.apps.removeAt(i); 
+    this.apps.removeAt(i);
   }
 
   getappsfromWebservice()
   {
-    this.appsfromWebservice = [];  
-    this.rest.getallApp().subscribe((data: {}) => 
+    this.appsfromWebservice = [];
+    this.rest.getallApp().subscribe((data: {}) =>
     {
       this.appsfromWebservice = data;
     });
@@ -58,7 +58,7 @@ export class FeatureFormComponent implements OnInit
 
   onclick()
   {
-    
+
   }
 
 }

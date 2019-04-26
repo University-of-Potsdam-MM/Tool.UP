@@ -13,26 +13,26 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./login.component.scss']
 })
 
-export class LoginComponent implements OnInit 
+export class LoginComponent implements OnInit
 {
-  login: FormGroup; 
+  login: FormGroup;
   constructor(private router: Router , private fb: FormBuilder, public rest:DataService) { }
 
-  ngOnInit() 
+  ngOnInit()
   {
     this.login = this.fb.group(
       {
-        email: '', 
-        password: ''  
-      }); 
+        email: '',
+        password: ''
+      });
   }
 
   oncklick()
   {
-    let  credentials = this.login.getRawValue();  
+    let  credentials = this.login.getRawValue();
     if(credentials.email == "finnziehe@mailbox.org" && credentials.password == "bacon1234" )
     {
-      this.router.navigate(['/menue']); 
+      this.router.navigate(['/menue']);
       this.setloggin(true);
     }
     else
@@ -42,8 +42,8 @@ export class LoginComponent implements OnInit
   }
 
   setloggin(setloggin)
-  { 
-    this.rest.setloggin(setloggin); 
+  {
+    this.rest.setloggin(setloggin);
   }
 }
 

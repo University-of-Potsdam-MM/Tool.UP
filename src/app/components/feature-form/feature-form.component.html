@@ -15,7 +15,7 @@
         <label for="pwd">Tool
         <select formControlName="name">
           <option *ngFor="let app of appsfromWebservice " value="{{app.id}}">{{app.title}}</option>
-        </select> 
+        </select>
         </label>
         <button (click)=deleteapps(i) class="btn btn-outline-danger my-2 my-sm-0" type="submit">Löschen</button>
       </div>
@@ -23,8 +23,7 @@
     <button (click)=addapps() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Tool hinzufügen</button>
     <div class="p-3"></div>
     <button (click)=onclick() class="btn btn-outline-success my-2 my-sm-0"  type="submit">Abschicken</button>
-  </form> 
+  </form>
 </div>
 
-        
-   
+

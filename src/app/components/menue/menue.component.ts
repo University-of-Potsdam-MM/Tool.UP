@@ -7,13 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menue.component.scss']
 })
 
-export class MenueComponent implements OnInit 
+export class MenueComponent implements OnInit
 {
 
   constructor() { }
 
-  ngOnInit() 
+  ngOnInit()
   {
-  
+
   }
 }

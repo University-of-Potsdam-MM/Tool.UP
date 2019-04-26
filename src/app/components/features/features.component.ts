@@ -13,33 +13,33 @@ import { strictEqual } from 'assert';
   styleUrls: ['./features.component.scss']
 })
 
-export class FeaturesComponent implements OnInit 
+export class FeaturesComponent implements OnInit
 {
 
-  public id:string; 
-  public split:string; 
-  checked = false; 
+  public id:string;
+  public split:string;
+  checked = false;
 
   constructor(public rest:DataService, private route: ActivatedRoute, private router: Router) { }
-  features:any = []; 
-  alles:any = []; 
-  feature:any = []; 
-  first:any = []; 
-  second:any = []; 
-  test = []; 
-  response:any = []; 
-  empty:boolean = true; 
+  features:any = [];
+  alles:any = [];
+  feature:any = [];
+  first:any = [];
+  second:any = [];
+  test = [];
+  response:any = [];
+  empty:boolean = true;
 
-  
-  ngOnInit() 
+
+  ngOnInit()
   {
     this.id = this.route.snapshot.paramMap.get("id");
-    this.getAllFeatures(); 
+    this.getAllFeatures();
   }
 
 
   onClickMe(featureid)
-  { 
+  {
     let rest = []
     var id = this.test.lastIndexOf(featureid);
     if(id <= -1)
@@ -52,31 +52,31 @@ export class FeaturesComponent implements OnInit
         //ist enthalten
         this.test.splice(id,1)
       }
-      console.log(this.test); 
+      console.log(this.test);
     if (this.test.length == 0)
     {
-      this.empty = true; 
-      this.response = []; 
+      this.empty = true;
+      this.response = [];
     }
     else
     {
-      this.empty = false; 
-      let string = 'features=' + this.test.toString(); 
+      this.empty = false;
+      let string = 'features=' + this.test.toString();
       this.rest.lookup(string).subscribe((data: {}) =>
         {
         this.response = data;
-        }); 
+        });
     }
   }
 
   getAllFeatures()
   {
-    this.features = [];  
-    this.rest.getAllFeatures().subscribe((data: {}) => 
+    this.features = [];
+    this.rest.getAllFeatures().subscribe((data: {}) =>
     {
-      this.alles = data; 
+      this.alles = data;
       this.features = data;
-      this.first = (this.features.splice(0,this.features.length/2)); 
+      this.first = (this.features.splice(0,this.features.length/2));
     });
   }
 }
