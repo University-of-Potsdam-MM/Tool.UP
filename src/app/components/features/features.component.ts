@@ -51,11 +51,19 @@ export class FeaturesComponent implements OnInit
         //ist enthalten
         this.test.splice(id,1)
       }
-    let string = 'features=' + this.test.toString(); 
-    this.rest.lookup(string).subscribe((data: {}) =>
-      {
-      this.response = data;
-      }); 
+      console.log(this.test); 
+    if (this.test.length == 0)
+    {
+      console.log("true") //Do nothing here
+    }
+    else
+    {
+      let string = 'features=' + this.test.toString(); 
+      this.rest.lookup(string).subscribe((data: {}) =>
+        {
+        this.response = data;
+        }); 
+    }
   }
 
   getAllFeatures()
