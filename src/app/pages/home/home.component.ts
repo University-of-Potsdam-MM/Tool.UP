@@ -21,7 +21,9 @@ export class HomeComponent implements OnInit
     this.id = this.route.snapshot.paramMap.get("id");
     this.getTopLevelCats();
   }
-
+/**
+ * Gets all toplevel categories
+ */
   getTopLevelCats()
   {
     this.toplevel = [];

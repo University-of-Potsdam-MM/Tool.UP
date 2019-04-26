@@ -47,7 +47,9 @@ export class FormComponent implements OnInit
     console.log(this.generateInserId());
   }
 
-
+/**
+ * Gets the categories from the form
+ */
   get cats()
   {
     return this.myForm.get('kategorien') as FormArray;
@@ -74,6 +76,9 @@ export class FormComponent implements OnInit
   }
 */
 
+/**
+ * Generates a insertid for the database
+ */
   generateInserId()
   {
     function sortNumber(a,b)
@@ -97,7 +102,9 @@ export class FormComponent implements OnInit
     return "application-" + insertID;
   }
 
-
+/**
+ * POSTS the tool to the database
+ */
   onclick()
   {
    this.addTool(this.myForm.getRawValue());
@@ -105,7 +112,10 @@ export class FormComponent implements OnInit
    window.location.reload();
   }
 
-
+/**
+ *
+ * @param json New tool params as JSON formatted
+ */
   addTool(json)
   {
     this.rest.addTool(JSON.stringify(json)).subscribe((data: {}) =>
@@ -114,7 +124,9 @@ export class FormComponent implements OnInit
     });
   }
 
-
+/**
+ *
+ */
   addCats()
   {
     const cat = this.fb.group(

@@ -26,7 +26,9 @@ export class LoginComponent implements OnInit
         password: ''
       });
   }
-
+/**
+ * Gets and checks the login form data
+ */
   oncklick()
   {
     let  credentials = this.login.getRawValue();
@@ -41,6 +43,10 @@ export class LoginComponent implements OnInit
     }
   }
 
+  /**
+   *
+   * @param setloggin The login boolean
+   */
   setloggin(setloggin)
   {
     this.rest.setloggin(setloggin);
