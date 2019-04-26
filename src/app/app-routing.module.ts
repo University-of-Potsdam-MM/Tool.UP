@@ -6,7 +6,7 @@ import { FeaturesComponent } from './components/features/features.component';
 import { ApplicationsComponent } from './components/applications/applications.component';
 import { FeatureSearchComponent } from './components/feature-search/feature-search.component';
 import { FormsModule } from '@angular/forms';
-
+import { AppsComponent } from "./components/apps/apps.component";
 import { LoginComponent } from './components/login/login.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { FormComponent } from './components/form/form.component';
@@ -33,6 +33,8 @@ const routes: Routes =
   {path: 'addfeature', component: FeatureFormComponent},
   {path: 'addcategory', component: CatFormComponent},
   {path: 'edittool', component: EditToolComponent},
+  {path: 'feature/:id', component: AppsComponent},
+
 ]
 
 @NgModule(

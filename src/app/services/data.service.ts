@@ -5,6 +5,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { Category } from 'src/app/interfaces/category';
 import { Application } from '../interfaces/application';
 import { RawSource } from 'webpack-sources';
+import { Feature } from '../interfaces/feature';
 
 const endpoint = 'http://localhost:8080/toolup/';
 
@@ -123,6 +124,23 @@ export class DataService
   }
 
 
+  private extractAppsfromFeatures(res: Feature) 
+  {
+    let features = res.applications; 
+    let featuresarr = []; 
+
+    features.forEach(features => 
+    {
+      featuresarr.push(JSON.parse(features)); 
+    }); 
+    
+    res.applications = featuresarr; 
+    let body = res;
+    //console.log(body); 
+    return body || { };
+  }
+
+
   getCatsfromApp(appid)
   {
     return this.http.get<Application>(endpoint + 'application/' + appid).pipe(
@@ -144,6 +162,12 @@ export class DataService
   {
     return this.http.get(endpoint + 'feature').pipe(
       map(this.extractData));
+  }
+
+  getFeaturebyID(featureid)
+  {
+    return this.http.get(endpoint + 'feature/' + featureid).pipe(
+      map(this.extractAppsfromFeatures));
   }
 
   getApps(catID)

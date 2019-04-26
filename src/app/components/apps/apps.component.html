@@ -1,0 +1,6 @@
+<div class="container-fluid">
+    <h1>{{feature.title}}</h1>
+    <hr />
+    <div class="d-flex p-2 bd-highlight flex-row align-content-start flex-wrap">
+            <app-cards *ngFor="let app of feature.applications" [title]="app.title" [routerLink]="['/application', app.id]" class="nav-link register-custom"> </app-cards> 
+    </div>
