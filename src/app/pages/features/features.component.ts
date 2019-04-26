@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { splitAtColon } from '@angular/compiler/src/util';
-import { strictEqual } from 'assert';
-//import { lookup } from 'dns';
 
 
 @Component(

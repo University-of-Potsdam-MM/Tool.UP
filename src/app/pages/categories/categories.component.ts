@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { Category } from 'src/app/interfaces/category';
 import { Application } from 'src/app/interfaces/application';
-import { CardsComponent } from '../cards/cards.component';
+import { CardsComponent } from '../../components/cards/cards.component';
 
 @Component(
 {

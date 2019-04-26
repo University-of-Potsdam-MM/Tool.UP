@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { CategoriesComponent } from './components/categories/categories.component';
-import { FeaturesComponent } from './components/features/features.component';
-import { ApplicationsComponent } from './components/applications/applications.component';
-import { FeatureSearchComponent } from './components/feature-search/feature-search.component';
+import { HomeComponent } from './pages/home/home.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
+import { FeaturesComponent } from './pages/features/features.component';
+import { ApplicationsComponent } from './pages/applications/applications.component';
+import { FeatureSearchComponent } from './pages/feature-search/feature-search.component';
 import { FormsModule } from '@angular/forms';
-import { AppsComponent } from "./components/apps/apps.component";
-import { LoginComponent } from './components/login/login.component';
+import { AppsComponent } from "./pages/apps/apps.component";
+import { LoginComponent } from './pages/login/login.component';
 import { CardsComponent } from './components/cards/cards.component';
-import { FormComponent } from './components/form/form.component';
-import { MenueComponent } from './components/menue/menue.component';
-import { FeatureFormComponent } from './components/feature-form/feature-form.component';
-import { CatFormComponent } from './components/cat-form/cat-form.component';
-import { EditToolComponent } from './components/edit-tool/edit-tool.component';
+import { FormComponent } from './pages/form/form.component';
+import { MenueComponent } from './pages/menue/menue.component';
+import { FeatureFormComponent } from './pages/feature-form/feature-form.component';
+import { CatFormComponent } from './pages/cat-form/cat-form.component';
+import { EditToolComponent } from './pages/edit-tool/edit-tool.component';
 
 const routes: Routes =
 [
