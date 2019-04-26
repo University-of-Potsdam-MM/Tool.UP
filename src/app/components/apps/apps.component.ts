@@ -3,6 +3,7 @@ import { Application } from 'src/app/interfaces/application';
 import { Category } from 'src/app/interfaces/category';
 import { DataService } from 'src/app/services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BrowserStack } from 'protractor/built/driverProviders';
 
 
 @Component(

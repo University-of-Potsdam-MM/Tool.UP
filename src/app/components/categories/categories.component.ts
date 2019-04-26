@@ -54,16 +54,39 @@ export class CategoriesComponent implements OnInit
     });
   }
   
-  onClickMe(id) 
+
+  onClickapp(id)
   {
-    this.rest.getCatbyID(id).subscribe((data: Category) => 
-    {
-      this.category = data;
-    });
+    console.log(id); 
     this.rest.getApps(id).subscribe((data: Array<Application>) =>
     {
       this.apps = data; 
     });
+  }
+
+  onClickMe(id) 
+  {
+    let splited = id.split("-"); 
+    if(splited[0] == "application")
+    {
+      //Do nothing here
+    }else
+    {
+      console.log(id); 
+      this.rest.getApps(id).subscribe((data: Array<Application>) =>
+      {
+        this.apps = data; 
+        console.log("getApps"); 
+      });
+  
+      this.rest.getCatbyID(id).subscribe((data: Category) => 
+      {
+        this.category = data;
+        console.log("getCATbyID"); 
+      });
+      
+    }
+    
   }
 
   getCatbyID(id) 
