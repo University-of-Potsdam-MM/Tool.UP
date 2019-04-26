@@ -11,4 +11,5 @@ RUN npm update
 RUN apt -y  install apache2
 RUN apt -y install mariadb-server 
 RUN apt -y install mariadb-client
-CMD cd /toolup/ && ng serve --host 0.0.0.0
+RUN cd /toolup/ && cp toolup.war /var/lib/tomcat8/webapps/
+ENTRYPOINT [ "/toolup/entrypoint.sh" ]
