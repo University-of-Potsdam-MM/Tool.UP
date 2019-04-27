@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from "@angular/forms";
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/interfaces/category';
@@ -10,29 +10,26 @@ import { generateExpandoInstructionBlock } from '@angular/core/src/render3/instr
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit
-{
+export class FormComponent implements OnInit {
   i = 0;
   myForm: FormGroup;
   catsFromWebservice:Array<Category>= [];
   constructor(private fb: FormBuilder, public rest:DataService, private route: ActivatedRoute, private router: Router) { }
-  featuresFromWebservice:any = [];
-  appsfromWebservice:any = [];
+  featuresFromWebservice: any = [];
+  appsfromWebservice: any = [];
 
   //unusedFeatures:any = [];
   //filteredFeatures:any = [];
   //lastaddedFeature;
-  values:any = [];
-  testtest:any = [];
+  values: any = [];
+  testtest: any = [];
 
-  ngOnInit()
-  {
+  ngOnInit() {
     this.getFeaturesfromWebservice();
     this.getCatsfromWebservice();
     this.getappsfromWebservice();
 
-    this.myForm = this.fb.group(
-    {
+    this.myForm = this.fb.group({
       uuid: '' ,
       title: '',
       description: '',
@@ -50,8 +47,7 @@ export class FormComponent implements OnInit
 /**
  * Gets the categories from the form
  */
-  get cats()
-  {
+  get cats() {
     return this.myForm.get('kategorien') as FormArray;
   }
 
@@ -79,8 +75,7 @@ export class FormComponent implements OnInit
 /**
  * Generates a insertid for the database
  */
-  generateInserId()
-  {
+  generateInserId() {
     function sortNumber(a,b)
     {
         return a - b;
@@ -99,111 +94,86 @@ export class FormComponent implements OnInit
 
     ids.sort(sortNumber);
     let insertID = Number.parseInt(ids[ids.length-1], 10) + 1;
-    return "application-" + insertID;
+    return 'application-' + insertID;
   }
 
 /**
  * POSTS the tool to the database
  */
-  onclick()
-  {
+  onclick() {
    this.addTool(this.myForm.getRawValue());
-   alert("Erfolg!");
+   alert('Erfolg!');
    window.location.reload();
   }
 
-/**
- *
- * @param json New tool params as JSON formatted
- */
-  addTool(json)
-  {
-    this.rest.addTool(JSON.stringify(json)).subscribe((data: {}) =>
-    {
-          console.log(data);
+  /**
+   * @param json New tool params as JSON formatted
+   */
+  addTool(json) {
+    this.rest.addTool(JSON.stringify(json)).subscribe((data: {}) => {
+      console.log(data);
     });
   }
 
-/**
- *
- */
-  addCats()
-  {
-    const cat = this.fb.group(
-      {
+  /**
+   *
+   */
+  addCats() {
+    const cat = this.fb.group({
         name: []
       });
     this.cats.push(cat);
   }
 
-  deleteCats(i)
-  {
+  deleteCats(i) {
     this.cats.removeAt(i);
   }
 
-  get features()
-  {
+  get features() {
     return this.myForm.get('features') as FormArray;
   }
 
-  addFeature()
-  {
-    const features = this.fb.group(
-      {
-        id: []
-      });
+  addFeature() {
+    const features = this.fb.group({
+      id: []
+    });
 
     let feature = this.myForm.getRawValue().features;
     let featuresarr = [];
 
-    feature.forEach(element =>
-      {
-        featuresarr.push(element.id);
-      });
+    feature.forEach(element => {
+      featuresarr.push(element.id);
+    });
 
     this.features.push(features);
     console.log(features.value);
   }
 
-  deleteFeature(i)
-  {
+  deleteFeature(i) {
     this.features.removeAt(i);
   }
 
-  getFeaturesfromWebservice()
-  {
+  getFeaturesfromWebservice() {
     this.featuresFromWebservice = [];
-    this.rest.getAllFeatures().subscribe((data: {}) =>
-    {
+    this.rest.getAllFeatures().subscribe((data: {}) => {
       this.featuresFromWebservice = data;
-      //this.unusedFeatures = data;
+      // this.unusedFeatures = data;
     });
   }
 
-  getCatsfromWebservice()
-  {
+  getCatsfromWebservice() {
     this.catsFromWebservice = [];
-    this.rest.getAllCats().subscribe((data:  Array<Category>) =>
-    {
+    this.rest.getAllCats().subscribe((data:  Array<Category>) => {
       this.catsFromWebservice = data;
     });
   }
 
-  getappsfromWebservice()
-  {
+  getappsfromWebservice() {
     this.appsfromWebservice = [];
-    this.rest.getallApp().subscribe((data: {}) =>
-    {
+    this.rest.getallApp().subscribe((data: {}) => {
       this.appsfromWebservice = data;
       //this.unusedFeatures = data;
-      this.myForm.setValue({uuid:this.generateInserId(), title:"", description:"", shortDescription:"", contact:"", provider:""});
+      this.myForm.setValue({uuid:this.generateInserId(), title: '', description: '', shortDescription: '', contact: '', provider: ''});
     });
   }
 }
-
-
-
-
-
-
-
