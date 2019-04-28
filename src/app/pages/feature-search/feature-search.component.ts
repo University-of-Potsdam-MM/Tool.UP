@@ -9,23 +9,19 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./feature-search.component.scss']
 })
 
-export class FeatureSearchComponent implements OnInit
-{
+export class FeatureSearchComponent implements OnInit {
   applications: any = [];
-  string:string;
-  constructor(public rest:DataService, private route: ActivatedRoute, private router: Router) { }
+  string: string;
+  constructor(public rest: DataService, private route: ActivatedRoute, private router: Router) { }
 
-  ngOnInit()
-  {
-    this.string = this.route.snapshot.paramMap.get("string");
+  ngOnInit() {
+    this.string = this.route.snapshot.paramMap.get('string');
     this.search(this.string);
   }
 
-  search(string:string)
-  {
-  let query = "search%20string=" + string
-  this.rest.search(query).subscribe((data: {}) =>
-   {
+  search(searchString: string) {
+  const query = 'search%20string=' + searchString;
+  this.rest.search(query).subscribe((data: {}) => {
    this.applications = data;
    });
   }

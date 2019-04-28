@@ -25,9 +25,7 @@ export class HomeComponent implements OnInit {
   getTopLevelCats() {
     this.toplevel = [];
     this.rest.getTopLevelCats().subscribe((data: {}) => {
-      // console.log(data);
       this.toplevel = data;
     });
   }
-
 }

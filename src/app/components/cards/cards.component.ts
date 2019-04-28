@@ -10,14 +10,11 @@ import { Input } from '@angular/core';
 
 
 
-export class CardsComponent implements OnInit
-{
+export class CardsComponent implements OnInit {
   @Input() title;
   @Input() color;
 
   constructor() { }
 
-  ngOnInit(){}
-
-
+  ngOnInit() {}
 }

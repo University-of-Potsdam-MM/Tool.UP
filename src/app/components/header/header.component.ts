@@ -10,19 +10,16 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit
-{
-  public loggedIN: boolean = false;
-  constructor(public rest:DataService, private router: Router ) { }
+export class HeaderComponent implements OnInit {
+  public loggedIN = false;
+  constructor(public rest: DataService, private router: Router ) { }
 
-  response:any = [];
-  search:string;
+  response: any = [];
+  search: string;
 
-  ngOnInit(){}
+  ngOnInit() {}
 
-  onSubmit()
-  {
-    this.router.navigate(['/feature-search', this.search])
+  onSubmit() {
+    this.router.navigate(['/feature-search', this.search]);
   }
-
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from "@angular/forms";
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Application } from 'src/app/interfaces/application';
 import { DataService } from 'src/app/services/data.service';
@@ -9,56 +9,42 @@ import { DataService } from 'src/app/services/data.service';
   templateUrl: './feature-form.component.html',
   styleUrls: ['./feature-form.component.scss']
 })
-export class FeatureFormComponent implements OnInit
-{
+export class FeatureFormComponent implements OnInit {
   myForm: FormGroup;
-  appsfromWebservice:any = [];
+  appsfromWebservice: any = [];
 
-  constructor(private fb: FormBuilder,  public rest:DataService) { }
+  constructor(private fb: FormBuilder,  public rest: DataService) { }
 
-  ngOnInit()
-  {
+  ngOnInit() {
     this.getappsfromWebservice();
-    this.myForm = this.fb.group(
-      {
+    this.myForm = this.fb.group({
         titel: '',
-        beschreibung:'',
+        beschreibung: '',
         apps: this.fb.array([])
-      });
-     // this.myForm.valueChanges.subscribe(console.log);
+    });
   }
 
-  get apps()
-  {
+  get apps() {
     return this.myForm.get('apps') as FormArray;
   }
 
-  addapps()
-  {
-    const apps = this.fb.group(
-      {
+  addapps() {
+    const apps = this.fb.group({
         name: []
       });
     this.apps.push(apps);
   }
 
-  deleteapps(i)
-  {
+  deleteapps(i) {
     this.apps.removeAt(i);
   }
 
-  getappsfromWebservice()
-  {
+  getappsfromWebservice() {
     this.appsfromWebservice = [];
-    this.rest.getallApp().subscribe((data: {}) =>
-    {
+    this.rest.getallApp().subscribe((data: {}) => {
       this.appsfromWebservice = data;
     });
   }
 
-  onclick()
-  {
-
-  }
-
+  onclick() { }
 }

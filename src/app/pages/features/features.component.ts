@@ -22,7 +22,7 @@ export class FeaturesComponent implements OnInit {
   second: any = [];
   test = [];
   response: any = [];
-  empty: boolean = true;
+  empty = true;
 
 
   ngOnInit() {
@@ -32,7 +32,7 @@ export class FeaturesComponent implements OnInit {
 
 
   onClickMe(featureid) {
-    let id = this.test.lastIndexOf(featureid);
+    const id = this.test.lastIndexOf(featureid);
     if (id <= -1) {
       // nicht enthalten also hinzufügen
       this.test.push(featureid);
@@ -46,8 +46,8 @@ export class FeaturesComponent implements OnInit {
       this.response = [];
     } else {
       this.empty = false;
-      let string = 'features=' + this.test.toString();
-      this.rest.lookup(string).subscribe((data: {}) => {
+      const searchString = 'features=' + this.test.toString();
+      this.rest.lookup(searchString).subscribe((data: {}) => {
         this.response = data;
       });
     }

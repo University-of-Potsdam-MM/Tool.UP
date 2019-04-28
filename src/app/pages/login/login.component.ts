@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
    */
   oncklick() {
     const  credentials = this.login.getRawValue();
-    if(credentials.email === 'finnziehe@mailbox.org' && credentials.password === 'bacon1234' ) {
+    if (credentials.email === 'finnziehe@mailbox.org' && credentials.password === 'bacon1234' ) {
       this.router.navigate(['/menue']);
       this.setloggin(true);
     } else {

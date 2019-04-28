@@ -6,7 +6,7 @@ import { FeaturesComponent } from './pages/features/features.component';
 import { ApplicationsComponent } from './pages/applications/applications.component';
 import { FeatureSearchComponent } from './pages/feature-search/feature-search.component';
 import { FormsModule } from '@angular/forms';
-import { AppsComponent } from "./pages/apps/apps.component";
+import { AppsComponent } from './pages/apps/apps.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { FormComponent } from './pages/form/form.component';
@@ -35,7 +35,7 @@ const routes: Routes =
   {path: 'edittool', component: EditToolComponent},
   {path: 'feature/:id', component: AppsComponent},
 
-]
+];
 
 @NgModule(
 {
@@ -46,7 +46,4 @@ const routes: Routes =
 /**
  * @class AppRoutingModule
  */
-export class AppRoutingModule
-{
-
-}
+export class AppRoutingModule { }

@@ -5,94 +5,69 @@ import { Category } from 'src/app/interfaces/category';
 import { Application } from 'src/app/interfaces/application';
 import { CardsComponent } from '../../components/cards/cards.component';
 
-@Component(
-{
+@Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss']
 })
 
-export class CategoriesComponent implements OnInit
-{
+export class CategoriesComponent implements OnInit {
 
   console = console;
   public id;
-  category:Category;
-  categories:Array<Category> = [];
-  apps:Array<Application> = [];
-  constructor(public rest:DataService, private route: ActivatedRoute, private router: Router) { }
+  category: Category;
+  categories: Array<Category> = [];
+  apps: Array<Application> = [];
+  constructor(public rest: DataService, private route: ActivatedRoute, private router: Router) { }
 
-  ngOnInit()
-  {
-    this.id = this.route.snapshot.paramMap.get("id");
-    if (this.id != null)
-    {
+  ngOnInit() {
+    this.id = this.route.snapshot.paramMap.get('id');
+    if (this.id != null) {
       this.getCatbyID(this.id);
       this.getApps(this.id);
-    }
-    else
-    {
+    } else {
       this.getAllCats();
     }
   }
 
-  getAllCats()
-  {
+  getAllCats() {
     this.categories = [];
-    this.rest.getAllCats().subscribe((data: Array<Category>) =>
-    {
+    this.rest.getAllCats().subscribe((data: Array<Category>) => {
       this.categories = data;
     });
   }
 
-  getApps(id)
-  {
+  getApps(id) {
     this.apps = [];
-    this.rest.getApps(id).subscribe((data:Array<Application>) =>
-    {
+    this.rest.getApps(id).subscribe((data: Array<Application>) => {
       this.apps = data;
     });
   }
 
 
-  onClickapp(id)
-  {
-    console.log(id);
-    this.rest.getApps(id).subscribe((data: Array<Application>) =>
-    {
+  onClickapp(id) {
+    this.rest.getApps(id).subscribe((data: Array<Application>) => {
       this.apps = data;
     });
   }
 
-  onClickMe(id)
-  {
-    let splited = id.split("-");
-    if(splited[0] == "application")
-    {
-      //Do nothing here
-    }else
-    {
-      console.log(id);
-      this.rest.getApps(id).subscribe((data: Array<Application>) =>
-      {
+  onClickMe(id) {
+    const splited = id.split('-');
+    if ( splited[0] === 'application') {
+      // Do nothing here
+    } else {
+      this.rest.getApps(id).subscribe((data: Array<Application>) => {
         this.apps = data;
-        console.log("getApps");
       });
 
-      this.rest.getCatbyID(id).subscribe((data: Category) =>
-      {
+      this.rest.getCatbyID(id).subscribe((data: Category) => {
         this.category = data;
-        console.log("getCATbyID");
       });
-
     }
-
   }
 
-  getCatbyID(id)
-  {
-    this.rest.getCatbyID(id).subscribe((data: Category) =>
-    {
+  getCatbyID(id) {
+    this.rest.getCatbyID(id).subscribe((data: Category) => {
       this.category = data;
     });
   }

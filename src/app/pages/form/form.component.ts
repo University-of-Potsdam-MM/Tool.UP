@@ -13,14 +13,14 @@ import { generateExpandoInstructionBlock } from '@angular/core/src/render3/instr
 export class FormComponent implements OnInit {
   i = 0;
   myForm: FormGroup;
-  catsFromWebservice:Array<Category>= [];
-  constructor(private fb: FormBuilder, public rest:DataService, private route: ActivatedRoute, private router: Router) { }
+  catsFromWebservice: Array<Category> = [];
+  constructor(private fb: FormBuilder, public rest: DataService, private route: ActivatedRoute, private router: Router) { }
   featuresFromWebservice: any = [];
   appsfromWebservice: any = [];
 
-  //unusedFeatures:any = [];
-  //filteredFeatures:any = [];
-  //lastaddedFeature;
+  // unusedFeatures:any = [];
+  // filteredFeatures:any = [];
+  // lastaddedFeature;
   values: any = [];
   testtest: any = [];
 
@@ -35,8 +35,8 @@ export class FormComponent implements OnInit {
       description: '',
       shortDescription: '',
       contact: '',
-      provider:'',
-    //  features: this.fb.array([]),
+      provider: '',
+    // features: this.fb.array([]),
     // kategorien: this.fb.array([])
     });
 
@@ -76,24 +76,20 @@ export class FormComponent implements OnInit {
  * Generates a insertid for the database
  */
   generateInserId() {
-    function sortNumber(a,b)
-    {
+    function sortNumber( a , b ) {
         return a - b;
     }
 
-  let splitedids = [];
-  let ids = [];
-    this.appsfromWebservice.forEach(element =>
-    {
-      splitedids.push(element.id.split("-"));
+    const splitedids = [];
+    const ids = [];
+    this.appsfromWebservice.forEach(element => {
+      splitedids.push(element.id.split('-'));
     });
-    splitedids.forEach(element =>
-    {
+    splitedids.forEach(element => {
       ids.push((element[1]));
     });
-
     ids.sort(sortNumber);
-    let insertID = Number.parseInt(ids[ids.length-1], 10) + 1;
+    const insertID = Number.parseInt(ids[ids.length - 1 ], 10) + 1;
     return 'application-' + insertID;
   }
 
@@ -138,8 +134,8 @@ export class FormComponent implements OnInit {
       id: []
     });
 
-    let feature = this.myForm.getRawValue().features;
-    let featuresarr = [];
+    const feature = this.myForm.getRawValue().features;
+    const featuresarr = [];
 
     feature.forEach(element => {
       featuresarr.push(element.id);
@@ -157,13 +153,12 @@ export class FormComponent implements OnInit {
     this.featuresFromWebservice = [];
     this.rest.getAllFeatures().subscribe((data: {}) => {
       this.featuresFromWebservice = data;
-      // this.unusedFeatures = data;
     });
   }
 
   getCatsfromWebservice() {
     this.catsFromWebservice = [];
-    this.rest.getAllCats().subscribe((data:  Array<Category>) => {
+    this.rest.getAllCats().subscribe((data: Array<Category>) => {
       this.catsFromWebservice = data;
     });
   }
@@ -172,8 +167,13 @@ export class FormComponent implements OnInit {
     this.appsfromWebservice = [];
     this.rest.getallApp().subscribe((data: {}) => {
       this.appsfromWebservice = data;
-      //this.unusedFeatures = data;
-      this.myForm.setValue({uuid:this.generateInserId(), title: '', description: '', shortDescription: '', contact: '', provider: ''});
+      this.myForm.setValue({
+        uuid: this.generateInserId(),
+        title: '',
+        description: '',
+        shortDescription: '',
+        contact: '',
+        provider: ''});
     });
   }
 }

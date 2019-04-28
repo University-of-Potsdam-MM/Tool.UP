@@ -15,23 +15,19 @@ import { BrowserStack } from 'protractor/built/driverProviders';
 
 export class AppsComponent implements OnInit {
 
-  feature:any = [];
-  constructor (public rest:DataService, private route: ActivatedRoute, private router: Router) { }
-  public id:string;
+  feature: any = [];
+  constructor(public rest: DataService, private route: ActivatedRoute, private router: Router) { }
+  public id: string;
 
-  ngOnInit()
-  {
-    this.id = this.route.snapshot.paramMap.get("id");
+  ngOnInit() {
+    this.id = this.route.snapshot.paramMap.get('id');
     console.log(this.id);
     this.getFeature(this.id);
-
   }
 
-  getFeature(featureid)
-  {
+  getFeature(featureid) {
   this.feature = [];
-    this.rest.getFeaturebyID(featureid).subscribe((data: {}) =>
-    {
+  this.rest.getFeaturebyID(featureid).subscribe((data: {}) => {
       this.feature = data;
       console.log(data);
     });
